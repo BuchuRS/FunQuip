@@ -59,7 +59,7 @@ export function FeaturesSection() {
     },
     {
       name: 'Sea Pools',
-      image: '/images/category-platforms.png',
+      image: '/images/product-seapool.webp',
       href: '/products?category=platforms',
     },
     {
