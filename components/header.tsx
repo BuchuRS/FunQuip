@@ -76,9 +76,11 @@ export function Header() {
 
           {/* Center Logo */}
           <Link href="/" className="absolute left-1/2 -translate-x-1/2">
-            <span className="text-xl font-serif italic text-neutral-900 tracking-tight">
-              X<span className="font-normal not-italic">flatable</span>
-            </span>
+            <img
+              src="/funquip-logo.png"
+              alt="FunQuip Logo"
+              className="h-12 w-auto"
+            />
           </Link>
 
           {/* Right - Contact Button */}
@@ -92,8 +94,12 @@ export function Header() {
 
         {/* Mobile Navigation */}
         <div className="lg:hidden flex items-center justify-between bg-white/50 backdrop-blur-md rounded-full px-4 py-3 shadow-lg">
-          <Link href="/" className="text-lg font-serif italic text-neutral-900">
-            X<span className="font-normal not-italic">flatable</span>
+          <Link href="/" className="h-10 flex items-center">
+            <img
+              src="/funquip-logo.png"
+              alt="FunQuip Logo"
+              className="h-10 w-auto"
+            />
           </Link>
           <button
             type="button"
@@ -117,10 +123,14 @@ export function Header() {
             <div className="flex items-center justify-between">
               <Link
                 href="/"
-                className="text-xl font-serif italic text-white"
+                className="h-10 flex items-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                X<span className="font-normal not-italic">flatable</span>
+                <img
+                  src="/funquip-logo.png"
+                  alt="FunQuip Logo"
+                  className="h-10 w-auto"
+                />
               </Link>
               <button
                 type="button"
