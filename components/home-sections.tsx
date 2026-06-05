@@ -59,7 +59,7 @@ export function FeaturesSection() {
     },
     {
       name: 'Sea Pools',
-      image: '/images/category-platforms.png',
+      image: '/images/product-seapool.webp',
       href: '/products?category=platforms',
     },
     {
@@ -68,7 +68,7 @@ export function FeaturesSection() {
       href: '/products?category=sea-pools',
     },
     {
-      name: 'Fenders',
+      name: 'Furniture',
       image: '/images/category-accessories.png',
       href: '/products?category=professional',
     },
@@ -112,12 +112,12 @@ export function FeaturesSection() {
             ))}
           </div>
           
-          {/* Bottom row - asymmetric: left wider, right narrower */}
-          <div className="grid grid-cols-1 sm:grid-cols-5 gap-6 md:gap-8">
-            {/* Left card - takes 3/5 of the width */}
+          {/* Bottom row - symmetric: two equal columns */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+            {/* Left card */}
             <Link
               href={categories[2].href}
-              className="group block sm:col-span-3"
+              className="group block"
             >
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4">
                 <Image
@@ -136,10 +136,10 @@ export function FeaturesSection() {
               </span>
             </Link>
             
-            {/* Right card - takes 2/5 of the width */}
+            {/* Right card */}
             <Link
               href={categories[3].href}
-              className="group block sm:col-span-2"
+              className="group block"
             >
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4">
                 <Image

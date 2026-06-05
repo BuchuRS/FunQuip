@@ -64,7 +64,7 @@ export const products: Product[] = [
     tagline: 'Safe sanctuary in open water',
     description:
       'Inflatable sea pools create a protected swimming area alongside your yacht. Ideal for families with children and guests learning to dive. Netted enclosure keeps jellyfish and marine life at bay.',
-    image: '/images/product-seapool.png',
+    image: '/images/product-seapool.webp',
     specs: [
       { label: 'Dimensions', value: '5m × 4m × 2m depth' },
       { label: 'Net Mesh', value: '3mm anti-jellyfish' },
