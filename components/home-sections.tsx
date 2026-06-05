@@ -68,7 +68,7 @@ export function FeaturesSection() {
       href: '/products?category=sea-pools',
     },
     {
-      name: 'Fenders',
+      name: 'Furniture',
       image: '/images/category-accessories.png',
       href: '/products?category=professional',
     },
