@@ -29,11 +29,11 @@ export default function HomePage() {
             </div>
 
             <BeforeAfterSlider
-              beforeImage="/images/product-seapool.webp"
-              afterImage="/images/category-accessories.png"
-              beforeLabel="Before"
-              afterLabel="After"
-              alt="FunQuip Solutions Comparison"
+              beforeImage="/images/slider-before.png"
+              afterImage="/images/slider-after.png"
+              beforeLabel="Design"
+              afterLabel="Reality"
+              alt="FunQuip Platform — Design vs Reality"
             />
           </div>
         </section>
