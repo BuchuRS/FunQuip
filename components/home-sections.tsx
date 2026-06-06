@@ -79,8 +79,8 @@ export function FeaturesSection() {
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         {/* Playful heading with thin font weight */}
         <h2 className="text-4xl md:text-5xl font-light text-neutral-400 mb-12 md:mb-16">
-          engineered for<br />
-          <span className="text-neutral-800">life on water</span>
+          Crafted for<br />
+          <span className="text-neutral-800">Life beyond the deck</span>
         </h2>
 
         {/* Asymmetric category grid - matching reference layout */}
