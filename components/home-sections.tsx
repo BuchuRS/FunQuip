@@ -77,10 +77,10 @@ export function FeaturesSection() {
   return (
     <section className="py-20 md:py-28 bg-white">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        {/* Playful heading with thin font weight */}
-        <h2 className="text-4xl md:text-5xl font-light text-neutral-400 mb-12 md:mb-16">
-          engineered for<br />
-          <span className="text-neutral-800">life on water</span>
+        {/* Elegant heading with strong hierarchy */}
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-12 md:mb-16">
+          Crafted for<br />
+          <span className="text-accent">Life beyond the deck</span>
         </h2>
 
         {/* Asymmetric category grid - matching reference layout */}
