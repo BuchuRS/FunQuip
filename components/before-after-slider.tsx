@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import Image from 'next/image'
 
 interface BeforeAfterSliderProps {
@@ -20,66 +20,61 @@ export function BeforeAfterSlider({
 }: BeforeAfterSliderProps) {
   const [sliderPosition, setSliderPosition] = useState(50)
   const containerRef = useRef<HTMLDivElement>(null)
-  const [isDragging, setIsDragging] = useState(false)
+  const isDragging = useRef(false)
 
-  const handleMouseDown = () => {
-    setIsDragging(true)
-  }
-
-  const handleMouseUp = () => {
-    setIsDragging(false)
-  }
-
-  const handleMouseMove = (e: MouseEvent) => {
-    if (!isDragging || !containerRef.current) return
-
+  const updatePosition = useCallback((clientX: number) => {
+    if (!containerRef.current) return
     const rect = containerRef.current.getBoundingClientRect()
-    const x = e.clientX - rect.left
+    const x = clientX - rect.left
     const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100))
     setSliderPosition(percentage)
-  }
+  }, [])
 
-  const handleTouchStart = () => {
-    setIsDragging(true)
-  }
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    isDragging.current = true
+    updatePosition(e.clientX)
 
-  const handleTouchEnd = () => {
-    setIsDragging(false)
-  }
-
-  const handleTouchMove = (e: TouchEvent) => {
-    if (!isDragging || !containerRef.current) return
-
-    const rect = containerRef.current.getBoundingClientRect()
-    const x = e.touches[0].clientX - rect.left
-    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100))
-    setSliderPosition(percentage)
-  }
-
-  useEffect(() => {
-    if (isDragging) {
-      window.addEventListener('mousemove', handleMouseMove)
-      window.addEventListener('mouseup', handleMouseUp)
-      window.addEventListener('touchmove', handleTouchMove)
-      window.addEventListener('touchend', handleTouchEnd)
-
-      return () => {
-        window.removeEventListener('mousemove', handleMouseMove)
-        window.removeEventListener('mouseup', handleMouseUp)
-        window.removeEventListener('touchmove', handleTouchMove)
-        window.removeEventListener('touchend', handleTouchEnd)
-      }
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDragging.current) return
+      updatePosition(e.clientX)
     }
-  }, [isDragging])
+    const handleMouseUp = () => {
+      isDragging.current = false
+      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('mouseup', handleMouseUp)
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('mouseup', handleMouseUp)
+  }, [updatePosition])
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    isDragging.current = true
+    updatePosition(e.touches[0].clientX)
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!isDragging.current) return
+      e.preventDefault()
+      updatePosition(e.touches[0].clientX)
+    }
+    const handleTouchEnd = () => {
+      isDragging.current = false
+      window.removeEventListener('touchmove', handleTouchMove)
+      window.removeEventListener('touchend', handleTouchEnd)
+    }
+
+    window.addEventListener('touchmove', handleTouchMove, { passive: false })
+    window.addEventListener('touchend', handleTouchEnd)
+  }, [updatePosition])
 
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-video bg-gray-200 rounded-2xl overflow-hidden cursor-col-resize select-none"
+      className="relative w-full aspect-video rounded-2xl overflow-hidden select-none cursor-col-resize"
       onMouseDown={handleMouseDown}
       onTouchStart={handleTouchStart}
     >
-      {/* After Image (Background) */}
+      {/* After Image (base layer) */}
       <div className="absolute inset-0">
         <Image
           src={afterImage}
@@ -87,13 +82,17 @@ export function BeforeAfterSlider({
           fill
           className="object-cover"
           priority
+          draggable={false}
         />
       </div>
 
-      {/* Before Image (Clipped) */}
+      {/* Before Image with soft gradient fade at the edge */}
       <div
-        className="absolute inset-0 overflow-hidden"
-        style={{ width: `${sliderPosition}%` }}
+        className="absolute inset-0"
+        style={{
+          clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
+          willChange: 'clip-path',
+        }}
       >
         <Image
           src={beforeImage}
@@ -101,30 +100,39 @@ export function BeforeAfterSlider({
           fill
           className="object-cover"
           priority
+          draggable={false}
+        />
+        {/* Soft feathered edge */}
+        <div
+          className="absolute inset-y-0 right-0 w-16 pointer-events-none"
+          style={{
+            background: 'linear-gradient(to right, transparent, rgba(0,0,0,0.08))',
+          }}
         />
       </div>
 
-      {/* Slider Handle */}
+      {/* Divider line */}
       <div
-        className="absolute top-0 bottom-0 w-1 bg-white cursor-col-resize"
-        style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
+        className="absolute top-0 bottom-0 w-px bg-white/80 pointer-events-none"
+        style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)', willChange: 'left' }}
+      />
+
+      {/* Handle */}
+      <div
+        className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-11 h-11 bg-white rounded-full shadow-xl flex items-center justify-center pointer-events-none ring-1 ring-black/10"
+        style={{ left: `${sliderPosition}%`, willChange: 'left' }}
       >
-        {/* Handle Circle */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center">
-          <div className="flex gap-1">
-            <div className="w-0.5 h-6 bg-gray-400"></div>
-            <div className="w-0.5 h-6 bg-gray-400"></div>
-          </div>
-        </div>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M7 4L3 10L7 16" stroke="#555" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M13 4L17 10L13 16" stroke="#555" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
       </div>
 
-      {/* Before Label */}
-      <div className="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm font-medium">
+      {/* Labels */}
+      <div className="absolute top-4 left-4 bg-black/40 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide pointer-events-none">
         {beforeLabel}
       </div>
-
-      {/* After Label */}
-      <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm font-medium">
+      <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide pointer-events-none">
         {afterLabel}
       </div>
     </div>
