@@ -146,7 +146,7 @@ export function WorkingWithUsSection() {
           {/* Spine track */}
           <div
             aria-hidden="true"
-            className="absolute inset-y-0 w-px bg-border left-1/2 -translate-x-px timeline-spine-x"
+            className="absolute inset-y-0 w-0.5 bg-border left-1/2 -translate-x-px timeline-spine-x"
           >
             <div
               ref={fillRef}
