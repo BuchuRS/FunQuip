@@ -22,8 +22,8 @@ export function HeroSection() {
       {/* Content - Centered */}
       <div className="relative z-10 mx-auto max-w-5xl px-6 pt-32 pb-16 lg:px-8 text-center flex-1 flex flex-col items-center justify-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white uppercase leading-tight">
-          <span className="block" style={{ fontFamily: 'var(--font-inter)' }}>Designed for Performance.</span>
-          <span className="block italic" style={{ fontFamily: 'var(--font-playfair)' }}>Built for the Sea.</span>
+          <span className="block" style={{ fontFamily: 'var(--font-inter)' }}>Inflatable Platforms</span>
+          <span className="block italic" style={{ fontFamily: 'var(--font-playfair)' }}>for Superyachts.</span>
         </h1>
 
         <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
