@@ -214,18 +214,18 @@ function TimelineRow({ stage, isLeft, isActive, prefersReduced, nodeRef }: RowPr
       {/* ── Desktop layout (≥681px): two columns + centred node ── */}
       <div className="hidden sm-timeline:flex items-start">
         {/* Left column */}
-        <div className="flex-1 pr-10 pt-1 flex justify-end">
+        <div className="flex-1 pr-8 pt-1 flex justify-end">
           {isLeft ? (
             <div
               className={`
-                w-full max-w-sm transition-all duration-700 ease-out
+                w-full max-w-md transition-all duration-700 ease-out
                 ${isActive ? 'opacity-100 translate-x-0' : hiddenLeft}
               `}
             >
               <StageCard stage={stage} align="right" />
             </div>
           ) : (
-            <div className="w-full max-w-sm" aria-hidden="true" />
+            <div className="w-full max-w-md" aria-hidden="true" />
           )}
         </div>
 
@@ -235,18 +235,18 @@ function TimelineRow({ stage, isLeft, isActive, prefersReduced, nodeRef }: RowPr
         </div>
 
         {/* Right column */}
-        <div className="flex-1 pl-10 pt-1">
+        <div className="flex-1 pl-8 pt-1">
           {!isLeft ? (
             <div
               className={`
-                w-full max-w-sm transition-all duration-700 ease-out
+                w-full max-w-md transition-all duration-700 ease-out
                 ${isActive ? 'opacity-100 translate-x-0' : hiddenRight}
               `}
             >
               <StageCard stage={stage} align="left" />
             </div>
           ) : (
-            <div className="w-full max-w-sm" aria-hidden="true" />
+            <div className="w-full max-w-md" aria-hidden="true" />
           )}
         </div>
       </div>
@@ -303,7 +303,7 @@ function StageCard({ stage, align }: { stage: Stage; align: 'left' | 'right' }) 
   return (
     <article
       className={`
-        w-full max-w-sm overflow-hidden
+        w-full max-w-md overflow-hidden
         rounded-2xl border border-border bg-card
         shadow-sm hover:shadow-md hover:border-accent/40
         transition-shadow duration-300
