@@ -1,10 +1,10 @@
 'use client'
 
-import { useEffect, useRef, useState, forwardRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { BeforeAfterSlider } from './before-after-slider'
 
-/* ─── Data ──────────────────────────────────────────────────────────── */
+/* ─── Types & Data ──────────────────────────────────────────────────── */
 
 interface Stage {
   number: string
@@ -18,7 +18,6 @@ interface Stage {
     beforeLabel: string
     afterLabel: string
   }
-  featured?: boolean
 }
 
 const STAGES: Stage[] = [
@@ -49,7 +48,6 @@ const STAGES: Stage[] = [
       beforeLabel: 'Design',
       afterLabel: 'Reality',
     },
-    featured: true,
   },
   {
     number: '04',
@@ -77,18 +75,58 @@ const STAGES: Stage[] = [
   },
 ]
 
+/* ─── SVG path geometry ─────────────────────────────────────────────── */
+// The S-path is defined in a 1000×H viewBox where H = ROW_H * STAGES.length.
+// Each row the path sweeps across from one side to the other and curves down.
+const VB_W = 1000
+const ROW_H = 280  // viewBox units per stage row
+
+function buildPath(n: number): string {
+  // Start top-centre, sweep right, curve down, sweep left, curve down…
+  // Each stage occupies ROW_H units of height.
+  const cx = VB_W / 2   // centre x
+  const amp = VB_W * 0.36 // amplitude — how far left/right the path reaches
+  const curveR = ROW_H * 0.55 // vertical depth of the connecting S-curve
+
+  let d = `M ${cx} 0`
+
+  for (let i = 0; i < n; i++) {
+    const y0 = i * ROW_H
+    const yMid = y0 + ROW_H * 0.5
+    const y1 = (i + 1) * ROW_H
+
+    if (i % 2 === 0) {
+      // Sweep right
+      const x1 = cx + amp
+      d += ` C ${cx + amp * 0.5} ${y0}, ${x1} ${y0 + ROW_H * 0.25}, ${x1} ${yMid}`
+      // Curve down and back to centre
+      d += ` C ${x1} ${yMid + curveR}, ${cx} ${y1 - ROW_H * 0.1}, ${cx} ${y1}`
+    } else {
+      // Sweep left
+      const x1 = cx - amp
+      d += ` C ${cx - amp * 0.5} ${y0}, ${x1} ${y0 + ROW_H * 0.25}, ${x1} ${yMid}`
+      // Curve down and back to centre
+      d += ` C ${x1} ${yMid + curveR}, ${cx} ${y1 - ROW_H * 0.1}, ${cx} ${y1}`
+    }
+  }
+
+  return d
+}
+
 /* ─── Section ───────────────────────────────────────────────────────── */
 
-// Height of the Seabob icon on the spine (px)
-const SEABOB_H = 180
-
 export function WorkingWithUsSection() {
-  const spineRef = useRef<HTMLDivElement>(null)
-  const fillRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
+  const svgPathRef = useRef<SVGPathElement>(null)
+  const fillPathRef = useRef<SVGPathElement>(null)
   const seabobRef = useRef<HTMLDivElement>(null)
-  const nodeRefs = useRef<(HTMLDivElement | null)[]>([])
+  const nodeGroupRefs = useRef<(HTMLLIElement | null)[]>([])
   const [activeIndex, setActiveIndex] = useState(-1)
   const [prefersReduced, setPrefersReduced] = useState(false)
+
+  const N = STAGES.length
+  const VB_H = ROW_H * N
+  const pathD = buildPath(N)
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -99,45 +137,68 @@ export function WorkingWithUsSection() {
   }, [])
 
   useEffect(() => {
-    const fill = fillRef.current
-    const spine = spineRef.current
+    const path = svgPathRef.current
+    const fillPath = fillPathRef.current
     const seabob = seabobRef.current
+    const section = sectionRef.current
+
+    if (!path || !section) return
+
+    const totalLen = path.getTotalLength()
 
     if (prefersReduced) {
-      setActiveIndex(STAGES.length - 1)
-      if (fill) fill.style.height = '100%'
-      if (seabob) seabob.style.transform = `translateY(calc(100% - ${SEABOB_H}px))`
+      setActiveIndex(N - 1)
+      if (fillPath) {
+        fillPath.style.strokeDasharray = `${totalLen}`
+        fillPath.style.strokeDashoffset = '0'
+      }
       return
     }
 
-    if (!fill || !spine) return
+    if (fillPath) {
+      fillPath.style.strokeDasharray = `${totalLen}`
+      fillPath.style.strokeDashoffset = `${totalLen}`
+    }
+
     let raf: number
 
     const onScroll = () => {
       raf = requestAnimationFrame(() => {
-        const r = spine.getBoundingClientRect()
+        const rect = section.getBoundingClientRect()
         const vh = window.innerHeight
-        const progress = Math.min(
-          1,
-          Math.max(0, (vh - r.top) / (r.height + vh * 0.35))
-        )
+        // progress: 0 when section top hits bottom of screen, 1 when section bottom hits top
+        const progress = Math.min(1, Math.max(0,
+          (vh - rect.top) / (rect.height + vh * 0.2)
+        ))
 
-        fill.style.height = `${progress * 100}%`
+        const drawn = progress * totalLen
 
-        // Move Seabob to the tip of the fill line
-        if (seabob) {
-          const spineH = r.height
-          const tipPx = progress * spineH
-          // Centre the seabob on the fill tip
-          const offset = tipPx - SEABOB_H / 2
-          seabob.style.transform = `translateY(${Math.max(0, offset)}px)`
+        if (fillPath) {
+          fillPath.style.strokeDashoffset = `${totalLen - drawn}`
         }
 
-        const fillBottom = r.top + r.height * progress
-        nodeRefs.current.forEach((node, i) => {
+        // Position Seabob at the tip of the drawn path
+        if (seabob && path) {
+          const pt = path.getPointAtLength(Math.min(drawn, totalLen))
+          // Convert SVG coords to section-relative pixels
+          const svgEl = path.ownerSVGElement
+          if (svgEl) {
+            const svgRect = svgEl.getBoundingClientRect()
+            const scaleX = svgRect.width / VB_W
+            const scaleY = svgRect.height / VB_H
+            const px = pt.x * scaleX
+            const py = pt.y * scaleY
+            seabob.style.left = `${px}px`
+            seabob.style.top = `${py}px`
+          }
+        }
+
+        // Activate nodes: find each node's position along the path
+        nodeGroupRefs.current.forEach((node, i) => {
           if (!node) return
-          const nr = node.getBoundingClientRect()
-          if (fillBottom >= nr.top + nr.height / 2) {
+          // Each node sits at i+0.5 along the path (midpoint of each row)
+          const nodeProgress = (i + 0.5) / N
+          if (progress >= nodeProgress * 0.95) {
             setActiveIndex((prev) => Math.max(prev, i))
           }
         })
@@ -150,17 +211,19 @@ export function WorkingWithUsSection() {
       window.removeEventListener('scroll', onScroll)
       cancelAnimationFrame(raf)
     }
-  }, [prefersReduced])
+  }, [prefersReduced, N, VB_H, pathD])
 
   return (
     <section
+      ref={sectionRef}
       aria-labelledby="wwu-heading"
-      className="relative py-24 md:py-36 overflow-hidden bg-background"
+      className="relative py-24 md:py-36 bg-background overflow-hidden"
     >
-      <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+
         {/* Header */}
-        <header className="mb-20 md:mb-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] mb-4 text-ocean">
+        <header className="mb-20">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] mb-4" style={{ color: 'var(--color-ocean)' }}>
             Our Process
           </p>
           <h2
@@ -169,10 +232,7 @@ export function WorkingWithUsSection() {
           >
             Working With Us
           </h2>
-          <div
-            aria-hidden="true"
-            className="mt-5 h-px w-20 bg-border"
-          />
+          <div aria-hidden="true" className="mt-5 h-px w-20 bg-border" />
           <p className="mt-6 max-w-lg leading-relaxed text-sm sm:text-base text-muted-foreground">
             What to expect from the process — six clear stages from initial
             enquiry to long-term customer support, guided by the people who
@@ -180,290 +240,186 @@ export function WorkingWithUsSection() {
           </p>
         </header>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Spine track */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-0.5 bg-border/60 timeline-spine-x"
-          >
-            {/* Filled portion */}
-            <div
-              ref={fillRef}
-              className="absolute inset-x-0 top-0 bg-ocean"
-              style={{ height: '0%' }}
-            />
+        {/* S-path timeline */}
+        <div className="relative w-full">
 
-            {/* Seabob travelling down the spine */}
-            <div
-              ref={seabobRef}
-              aria-hidden="true"
-              className="absolute left-1/2 -translate-x-1/2 top-0 z-20 will-change-transform drop-shadow-md"
-              style={{ width: `${SEABOB_H * 0.50}px`, height: `${SEABOB_H}px` }}
-            >
-              <Image
-                src="/images/seabob-topdown.png"
-                alt=""
-                fill
-                className="object-contain"
-                sizes="90px"
-              />
-            </div>
+          {/* SVG spine — sits behind everything */}
+          <svg
+            aria-hidden="true"
+            viewBox={`0 0 ${VB_W} ${VB_H}`}
+            preserveAspectRatio="none"
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            style={{ zIndex: 0 }}
+          >
+            {/* Track (unfilled) */}
+            <path
+              ref={svgPathRef}
+              d={pathD}
+              fill="none"
+              stroke="var(--border)"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+            {/* Fill (ocean colour, animated via dashoffset) */}
+            <path
+              ref={fillPathRef}
+              d={pathD}
+              fill="none"
+              stroke="var(--color-ocean)"
+              strokeWidth="3"
+              strokeLinecap="round"
+              style={{ transition: 'stroke-dashoffset 0.05s linear' }}
+            />
+          </svg>
+
+          {/* Seabob — absolutely positioned over SVG */}
+          <div
+            ref={seabobRef}
+            aria-hidden="true"
+            className="absolute z-20 -translate-x-1/2 -translate-y-1/2 pointer-events-none will-change-transform"
+            style={{ width: 100, height: 240 }}
+          >
+            <Image
+              src="/images/seabob-topdown.png"
+              alt=""
+              fill
+              className="object-contain drop-shadow-lg"
+              sizes="100px"
+            />
           </div>
 
-          {/* Ghost spine for scroll measurement */}
-          <div
-            ref={spineRef}
-            aria-hidden="true"
-            className="absolute inset-y-0 w-0 left-1/2 timeline-spine-x"
-          />
-
-          <ol aria-label="Process stages" className="m-0 p-0 list-none">
+          {/* Stage rows */}
+          <ol className="relative z-10 list-none m-0 p-0">
             {STAGES.map((stage, i) => {
               const isLeft = i % 2 === 0
               const isActive = i <= activeIndex
-              const isFeatured = stage.featured
               return (
                 <li
                   key={stage.number}
-                  className={`relative ${isFeatured ? 'pb-0' : 'pb-16'} last:pb-0`}
+                  ref={(el: HTMLLIElement | null) => { nodeGroupRefs.current[i] = el }}
+                  className="relative flex items-center"
+                  style={{ minHeight: `${ROW_H * 0.85}px`, paddingBottom: 48 }}
                 >
-                  <TimelineRow
-                    stage={stage}
-                    isLeft={isLeft}
-                    isActive={isActive}
-                    nodeRef={(el) => { nodeRefs.current[i] = el }}
-                  />
+                  {/* Content: sits either left or right of centre */}
+                  {isLeft ? (
+                    // Left side card — right column empty
+                    <div className="w-full grid grid-cols-2 gap-8 items-center">
+                      <div
+                        className={`transition-all duration-700 ease-out ${
+                          isActive ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+                        }`}
+                      >
+                        <StageCard stage={stage} isActive={isActive} />
+                      </div>
+                      {/* Node marker — sits at the right edge of the left column (near spine midpoint) */}
+                      <div className="flex justify-start pl-4">
+                        <StageNode stage={stage} isActive={isActive} />
+                      </div>
+                    </div>
+                  ) : (
+                    // Right side card — left column has node
+                    <div className="w-full grid grid-cols-2 gap-8 items-center">
+                      <div className="flex justify-end pr-4">
+                        <StageNode stage={stage} isActive={isActive} />
+                      </div>
+                      <div
+                        className={`transition-all duration-700 ease-out ${
+                          isActive ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+                        }`}
+                      >
+                        <StageCard stage={stage} isActive={isActive} />
+                      </div>
+                    </div>
+                  )}
                 </li>
               )
             })}
           </ol>
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 680px) {
-          .timeline-spine-x {
-            left: 1.25rem !important;
-            transform: none !important;
-          }
-        }
-      `}</style>
     </section>
-  )
-}
-
-/* ─── Row ────────────────────────────────────────────────────────────── */
-
-interface RowProps {
-  stage: Stage
-  isLeft: boolean
-  isActive: boolean
-  nodeRef: (el: HTMLDivElement | null) => void
-}
-
-function TimelineRow({ stage, isLeft, isActive, nodeRef }: RowProps) {
-  const hiddenLeft = 'opacity-0 -translate-x-10'
-  const hiddenRight = 'opacity-0 translate-x-10'
-  const isFeatured = stage.featured
-
-  if (isFeatured) {
-    return (
-      <div className="relative py-8">
-        {/* Featured stage: full width */}
-        <div className="w-full">
-          <div
-            className={`transition-all duration-700 ease-out ${
-              isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-          >
-            <StageCard stage={stage} isActive={isActive} />
-          </div>
-        </div>
-
-        {/* Horizontal spine below featured card */}
-        <div className="flex items-center gap-4 mt-8">
-          <div
-            ref={nodeRef}
-            aria-label={`Stage ${stage.number}`}
-            className="shrink-0 flex items-center justify-center w-9 h-9 rounded-full font-sans text-xs font-bold select-none transition-all duration-500"
-            style={
-              isActive
-                ? {
-                    background: 'var(--color-ocean)',
-                    color: '#fff',
-                    boxShadow: '0 0 0 4px hsl(var(--background)), 0 0 0 6px var(--color-ocean)',
-                    transform: 'scale(1.1)',
-                  }
-                : {
-                    background: 'var(--background)',
-                    color: 'var(--color-ocean)',
-                    border: '2px solid color-mix(in oklch, var(--color-ocean) 40%, transparent)',
-                    transform: 'scale(1)',
-                  }
-            }
-          >
-            {stage.number}
-          </div>
-          <div
-            className="flex-1 h-0.5 transition-colors duration-500"
-            style={{
-              background: isActive ? 'var(--color-ocean)' : 'var(--border)',
-            }}
-          />
-        </div>
-      </div>
-    )
-  }
-
-  return (
-    <>
-      {/* Desktop (≥681px) */}
-      <div className="hidden sm-timeline:flex items-center">
-        <div className="flex-1 pr-10 flex justify-end">
-          {isLeft ? (
-            <div
-              className={`w-full transition-all duration-700 ease-out ${
-                isActive ? 'opacity-100 translate-x-0' : hiddenLeft
-              }`}
-            >
-              <StageCard stage={stage} isActive={isActive} />
-            </div>
-          ) : (
-            <div className="w-full" aria-hidden="true" />
-          )}
-        </div>
-
-        <div className="shrink-0 flex justify-center" style={{ width: '2.5rem' }}>
-          <Node ref={nodeRef} stage={stage} isActive={isActive} />
-        </div>
-
-        <div className="flex-1 pl-10">
-          {!isLeft ? (
-            <div
-              className={`w-full transition-all duration-700 ease-out ${
-                isActive ? 'opacity-100 translate-x-0' : hiddenRight
-              }`}
-            >
-              <StageCard stage={stage} isActive={isActive} />
-            </div>
-          ) : (
-            <div className="w-full" aria-hidden="true" />
-          )}
-        </div>
-      </div>
-
-      {/* Mobile (<681px) */}
-      <div className="flex items-start sm-timeline:hidden gap-5 pl-[1.25rem]">
-        <div
-          className="shrink-0 -translate-x-1/2 flex justify-center"
-          style={{ width: '2.5rem' }}
-        >
-          <Node ref={nodeRef} stage={stage} isActive={isActive} />
-        </div>
-        <div
-          className={`flex-1 transition-all duration-700 ease-out ${
-            isActive ? 'opacity-100 translate-x-0' : hiddenRight
-          }`}
-        >
-          <StageCard stage={stage} isActive={isActive} />
-        </div>
-      </div>
-    </>
   )
 }
 
 /* ─── Node ───────────────────────────────────────────────────────────── */
 
-const Node = forwardRef<HTMLDivElement, { stage: Stage; isActive: boolean }>(
-  function Node({ stage, isActive }, ref) {
-    return (
-      <div
-        ref={ref}
-        aria-label={`Stage ${stage.number}`}
-        className="relative flex items-center justify-center shrink-0 w-9 h-9 rounded-full font-sans text-xs font-bold select-none z-10 transition-all duration-500"
-        style={
-          isActive
-            ? {
-                background: 'var(--color-ocean)',
-                color: '#fff',
-                boxShadow: '0 0 0 4px hsl(var(--background)), 0 0 0 6px var(--color-ocean)',
-                transform: 'scale(1.1)',
-              }
-            : {
-                background: 'var(--background)',
-                color: 'var(--color-ocean)',
-                border: '2px solid color-mix(in oklch, var(--color-ocean) 40%, transparent)',
-                transform: 'scale(1)',
-              }
-        }
-      >
-        {stage.number}
-      </div>
-    )
-  }
-)
+function StageNode({ stage, isActive }: { stage: Stage; isActive: boolean }) {
+  return (
+    <div
+      aria-label={`Stage ${stage.number}`}
+      className="flex items-center justify-center w-10 h-10 rounded-full font-sans text-xs font-bold select-none transition-all duration-500 shrink-0 z-10"
+      style={
+        isActive
+          ? {
+              background: 'var(--color-ocean)',
+              color: '#fff',
+              boxShadow: '0 0 0 4px var(--background), 0 0 0 6px var(--color-ocean)',
+              transform: 'scale(1.15)',
+            }
+          : {
+              background: 'var(--background)',
+              color: 'var(--color-ocean)',
+              border: '2px solid color-mix(in oklch, var(--color-ocean) 40%, transparent)',
+            }
+      }
+    >
+      {stage.number}
+    </div>
+  )
+}
 
 /* ─── Card ───────────────────────────────────────────────────────────── */
 
 function StageCard({ stage, isActive }: { stage: Stage; isActive: boolean }) {
-  const isFeatured = stage.featured
-  
   return (
     <article
-      className={`group w-full rounded-xl overflow-hidden transition-shadow duration-500 border border-border/60 ${
-        isFeatured ? 'lg:col-span-2' : ''
-      }`}
+      className="group w-full rounded-xl overflow-hidden transition-shadow duration-500 border border-border/60"
       style={{
         background: 'var(--background)',
         boxShadow: isActive
-          ? '0 12px 40px oklch(0.22 0.02 240 / 0.16)'
-          : '0 2px 12px oklch(0.22 0.02 240 / 0.06)',
+          ? '0 8px 32px oklch(0.22 0.02 240 / 0.12)'
+          : '0 2px 12px oklch(0.22 0.02 240 / 0.05)',
       }}
     >
       {/* Top accent bar */}
       <div
         aria-hidden="true"
-        className={`w-full transition-all duration-500 ${isFeatured ? 'h-1' : 'h-[3px]'}`}
+        className="h-[3px] w-full transition-all duration-500"
         style={{
           background: isActive
             ? 'var(--color-ocean)'
-            : 'color-mix(in oklch, var(--color-ocean) 25%, transparent)',
+            : 'color-mix(in oklch, var(--color-ocean) 20%, transparent)',
         }}
       />
 
-      {/* Media: Image or Slider */}
-      <div className="relative w-full">
-        {stage.slider ? (
-          <div className={`${isFeatured ? 'p-6' : 'p-4'} bg-muted/30`}>
-            <BeforeAfterSlider
-              beforeImage={stage.slider.beforeImage}
-              afterImage={stage.slider.afterImage}
-              beforeLabel={stage.slider.beforeLabel}
-              afterLabel={stage.slider.afterLabel}
-              alt={`${stage.title} comparison`}
-            />
-          </div>
-        ) : stage.image ? (
-          <div className={isFeatured ? 'aspect-video' : 'aspect-[4/3]'} style={{ overflow: 'hidden' }}>
-            <Image
-              src={stage.image}
-              alt={stage.imageAlt || stage.title}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-              sizes={isFeatured ? '(max-width: 680px) 100vw, 90vw' : '(max-width: 680px) 100vw, 45vw'}
-            />
-          </div>
-        ) : null}
-      </div>
+      {/* Media */}
+      {stage.slider ? (
+        <div className="p-4 bg-muted/30">
+          <BeforeAfterSlider
+            beforeImage={stage.slider.beforeImage}
+            afterImage={stage.slider.afterImage}
+            beforeLabel={stage.slider.beforeLabel}
+            afterLabel={stage.slider.afterLabel}
+            alt={`${stage.title} — design vs reality`}
+          />
+        </div>
+      ) : stage.image ? (
+        <div className="relative aspect-[4/3] overflow-hidden">
+          <Image
+            src={stage.image}
+            alt={stage.imageAlt || stage.title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+            sizes="(max-width: 680px) 100vw, 44vw"
+          />
+        </div>
+      ) : null}
 
       {/* Text */}
-      <div className={isFeatured ? 'px-8 py-6' : 'px-6 py-5'}>
+      <div className="px-6 py-5">
         <div className="flex items-center gap-3 mb-3">
           <span
-            className={`font-sans font-bold tracking-widest px-2.5 py-1 rounded-full ${
-              isFeatured ? 'text-sm' : 'text-xs'
-            }`}
+            className="font-sans text-xs font-bold tracking-widest px-2.5 py-1 rounded-full"
             style={{
               background: 'color-mix(in oklch, var(--color-ocean) 10%, transparent)',
               color: 'var(--color-ocean)',
@@ -473,14 +429,10 @@ function StageCard({ stage, isActive }: { stage: Stage; isActive: boolean }) {
           </span>
           <div aria-hidden="true" className="flex-1 h-px bg-border" />
         </div>
-        <h3 className={`font-sans font-semibold leading-snug text-balance mb-2 text-foreground ${
-          isFeatured ? 'text-3xl sm:text-4xl' : 'text-xl sm:text-2xl'
-        }`}>
+        <h3 className="font-sans text-xl sm:text-2xl font-semibold leading-snug text-balance mb-2 text-foreground">
           {stage.title}
         </h3>
-        <p className={`leading-relaxed text-muted-foreground ${
-          isFeatured ? 'text-base' : 'text-sm'
-        }`}>
+        <p className="text-sm leading-relaxed text-muted-foreground">
           {stage.description}
         </p>
       </div>
