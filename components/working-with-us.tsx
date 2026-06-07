@@ -152,7 +152,7 @@ export function WorkingWithUsSection() {
           </p>
           <h2
             id="wwu-heading"
-            className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-balance leading-[1.1] text-foreground"
+            className="font-sans text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-balance leading-[1.1] text-foreground"
           >
             Working With Us
           </h2>
@@ -314,7 +314,7 @@ const Node = forwardRef<HTMLDivElement, { stage: Stage; isActive: boolean }>(
       <div
         ref={ref}
         aria-label={`Stage ${stage.number}`}
-        className="relative flex items-center justify-center shrink-0 w-9 h-9 rounded-full font-mono text-xs font-bold select-none z-10 transition-all duration-500"
+        className="relative flex items-center justify-center shrink-0 w-9 h-9 rounded-full font-sans text-xs font-bold select-none z-10 transition-all duration-500"
         style={
           isActive
             ? {
@@ -376,7 +376,7 @@ function StageCard({ stage, isActive }: { stage: Stage; isActive: boolean }) {
       <div className="px-6 py-5">
         <div className="flex items-center gap-3 mb-3">
           <span
-            className="font-mono text-xs font-bold tracking-widest px-2.5 py-1 rounded-full"
+            className="font-sans text-xs font-bold tracking-widest px-2.5 py-1 rounded-full"
             style={{
               background: 'color-mix(in oklch, var(--color-ocean) 10%, transparent)',
               color: 'var(--color-ocean)',
@@ -386,7 +386,7 @@ function StageCard({ stage, isActive }: { stage: Stage; isActive: boolean }) {
           </span>
           <div aria-hidden="true" className="flex-1 h-px bg-border" />
         </div>
-        <h3 className="font-serif text-xl sm:text-2xl font-semibold leading-snug text-balance mb-2 text-foreground">
+        <h3 className="font-sans text-xl sm:text-2xl font-semibold leading-snug text-balance mb-2 text-foreground">
           {stage.title}
         </h3>
         <p className="text-sm leading-relaxed text-muted-foreground">
