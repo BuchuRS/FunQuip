@@ -7,6 +7,7 @@ import {
   CTASection,
 } from '@/components/home-sections'
 import { BeforeAfterSlider } from '@/components/before-after-slider'
+import { WorkingWithUsSection } from '@/components/working-with-us'
 
 export default function HomePage() {
   return (
@@ -38,6 +39,7 @@ export default function HomePage() {
           </div>
         </section>
 
+        <WorkingWithUsSection />
         <AboutPreviewSection />
         <CTASection />
       </main>
