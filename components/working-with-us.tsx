@@ -64,6 +64,23 @@ const STAGES: Stage[] = [
   },
 ]
 
+/* ─── Teak constants (must stay in sync with globals.css tokens) ──── */
+
+// Plank stripe width + caulk seam width (px in the repeating-gradient)
+const PLANK_W = 52
+const CAULK_W = 4
+
+// CSS repeating-linear-gradient that simulates a teak deck (horizontal planks)
+const TEAK_BG = `repeating-linear-gradient(
+  180deg,
+  oklch(0.70 0.065 65) 0px,
+  oklch(0.68 0.07 65) ${PLANK_W * 0.4}px,
+  oklch(0.60 0.06 58) ${PLANK_W * 0.85}px,
+  oklch(0.65 0.065 63) ${PLANK_W}px,
+  oklch(0.22 0.02 50) ${PLANK_W}px,
+  oklch(0.22 0.02 50) ${PLANK_W + CAULK_W}px
+)`
+
 /* ─── Section ───────────────────────────────────────────────────────── */
 
 export function WorkingWithUsSection() {
@@ -92,14 +109,16 @@ export function WorkingWithUsSection() {
     }
 
     if (!fill || !spine) return
-
     let raf: number
 
     const onScroll = () => {
       raf = requestAnimationFrame(() => {
         const r = spine.getBoundingClientRect()
         const vh = window.innerHeight
-        const progress = Math.min(1, Math.max(0, (vh - r.top) / (r.height + vh * 0.35)))
+        const progress = Math.min(
+          1,
+          Math.max(0, (vh - r.top) / (r.height + vh * 0.35))
+        )
         fill.style.height = `${progress * 100}%`
 
         const fillBottom = r.top + r.height * progress
@@ -124,26 +143,58 @@ export function WorkingWithUsSection() {
   return (
     <section
       aria-labelledby="wwu-heading"
-      className="relative py-24 md:py-36 overflow-hidden bg-primary"
+      className="relative py-24 md:py-36 overflow-hidden"
+      style={{ background: TEAK_BG }}
     >
-      {/* Water ripple backdrop */}
-      <WaterRipple />
+      {/* Subtle dark vignette at top and bottom to anchor the section */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-20"
+        style={{
+          background:
+            'linear-gradient(to bottom, oklch(0.22 0.02 50 / 0.35), transparent)',
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-20"
+        style={{
+          background:
+            'linear-gradient(to top, oklch(0.22 0.02 50 / 0.35), transparent)',
+        }}
+      />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
-
         {/* Header */}
         <header className="mb-20 md:mb-28">
-          <p className="text-xs font-medium uppercase tracking-[0.25em] text-accent mb-4">
+          <p
+            className="text-xs font-semibold uppercase tracking-[0.3em] mb-4"
+            style={{ color: 'oklch(0.55 0.12 220)' }}
+          >
             Our Process
           </p>
           <h2
             id="wwu-heading"
-            className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-primary-foreground text-balance leading-[1.1]"
+            className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-balance leading-[1.1]"
+            style={{ color: 'oklch(0.18 0.03 50)' }}
           >
             Working With Us
           </h2>
-          <div className="mt-5 h-px w-16 bg-accent" aria-hidden="true" />
-          <p className="mt-6 max-w-lg text-primary-foreground/60 leading-relaxed text-sm sm:text-base">
+          {/* Teak-style accent rule: a plank + caulk stripe */}
+          <div
+            aria-hidden="true"
+            className="mt-5 h-[6px] w-20 rounded-sm overflow-hidden"
+            style={{
+              background: `repeating-linear-gradient(90deg,
+                oklch(0.68 0.07 65) 0px, oklch(0.60 0.06 58) ${PLANK_W}px,
+                oklch(0.22 0.02 50) ${PLANK_W}px, oklch(0.22 0.02 50) ${PLANK_W + CAULK_W}px
+              )`,
+            }}
+          />
+          <p
+            className="mt-6 max-w-lg leading-relaxed text-sm sm:text-base"
+            style={{ color: 'oklch(0.32 0.03 55)' }}
+          >
             Six clear steps from first conversation to long-term partnership —
             every stage guided by the people who care most about your time on
             the water.
@@ -152,20 +203,29 @@ export function WorkingWithUsSection() {
 
         {/* Timeline */}
         <div className="relative">
-          {/* Spine track */}
+          {/* Spine track — styled as a caulking seam */}
           <div
             aria-hidden="true"
-            className="absolute inset-y-0 w-0.5 left-1/2 -translate-x-px timeline-spine-x"
-            style={{ background: 'oklch(0.55 0.12 220 / 0.25)' }}
+            className="absolute inset-y-0 left-1/2 -translate-x-1/2 timeline-spine-x"
+            style={{
+              width: '4px',
+              background: 'oklch(0.22 0.02 50 / 0.55)',
+            }}
           >
+            {/* Fill — ocean-blue inlay threading through the deck */}
             <div
               ref={fillRef}
-              className="absolute inset-x-0 top-0 bg-accent"
-              style={{ height: '0%', transition: 'none' }}
+              className="absolute inset-x-0 top-0"
+              style={{
+                height: '0%',
+                transition: 'none',
+                background: 'oklch(0.55 0.12 220)',
+                boxShadow: '0 0 8px 2px oklch(0.55 0.12 220 / 0.45)',
+              }}
             />
           </div>
 
-          {/* Ghost spine for scroll measurements */}
+          {/* Ghost spine for measurements */}
           <div
             ref={spineRef}
             aria-hidden="true"
@@ -177,13 +237,15 @@ export function WorkingWithUsSection() {
               const isLeft = i % 2 === 0
               const isActive = i <= activeIndex
               return (
-                <li key={stage.number} className="relative pb-16 last:pb-0">
+                <li key={stage.number} className="relative pb-14 last:pb-0">
                   <TimelineRow
                     stage={stage}
                     isLeft={isLeft}
                     isActive={isActive}
                     prefersReduced={prefersReduced}
-                    nodeRef={(el) => { nodeRefs.current[i] = el }}
+                    nodeRef={(el) => {
+                      nodeRefs.current[i] = el
+                    }}
                   />
                 </li>
               )
@@ -205,35 +267,6 @@ export function WorkingWithUsSection() {
   )
 }
 
-/* ─── Water Ripple SVG backdrop ─────────────────────────────────────── */
-
-function WaterRipple() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 w-full h-full"
-      preserveAspectRatio="xMidYMid slice"
-      viewBox="0 0 1200 900"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      {/* Radiate from bottom-centre — like a stone dropped in water */}
-      {[80, 160, 240, 320, 400, 490, 585, 685, 790, 900].map((r, i) => (
-        <ellipse
-          key={r}
-          cx="600"
-          cy="960"
-          rx={r * 2.6}
-          ry={r}
-          fill="none"
-          stroke="oklch(0.55 0.12 220)"
-          strokeWidth="0.75"
-          opacity={0.06 + i * 0.012}
-        />
-      ))}
-    </svg>
-  )
-}
-
 /* ─── Row ────────────────────────────────────────────────────────────── */
 
 interface RowProps {
@@ -244,7 +277,13 @@ interface RowProps {
   nodeRef: (el: HTMLDivElement | null) => void
 }
 
-function TimelineRow({ stage, isLeft, isActive, prefersReduced, nodeRef }: RowProps) {
+function TimelineRow({
+  stage,
+  isLeft,
+  isActive,
+  prefersReduced,
+  nodeRef,
+}: RowProps) {
   const hiddenLeft = 'opacity-0 -translate-x-10'
   const hiddenRight = 'opacity-0 translate-x-10'
 
@@ -260,7 +299,7 @@ function TimelineRow({ stage, isLeft, isActive, prefersReduced, nodeRef }: RowPr
                 isActive ? 'opacity-100 translate-x-0' : hiddenLeft
               }`}
             >
-              <StageCard stage={stage} />
+              <StageCard stage={stage} isActive={isActive} />
             </div>
           ) : (
             <div className="w-full" aria-hidden="true" />
@@ -280,7 +319,7 @@ function TimelineRow({ stage, isLeft, isActive, prefersReduced, nodeRef }: RowPr
                 isActive ? 'opacity-100 translate-x-0' : hiddenRight
               }`}
             >
-              <StageCard stage={stage} />
+              <StageCard stage={stage} isActive={isActive} />
             </div>
           ) : (
             <div className="w-full" aria-hidden="true" />
@@ -290,7 +329,10 @@ function TimelineRow({ stage, isLeft, isActive, prefersReduced, nodeRef }: RowPr
 
       {/* ── Mobile (<681px) ── */}
       <div className="flex items-start sm-timeline:hidden gap-5 pl-[1.25rem]">
-        <div className="shrink-0 -translate-x-1/2 flex justify-center" style={{ width: '2.5rem' }}>
+        <div
+          className="shrink-0 -translate-x-1/2 flex justify-center"
+          style={{ width: '2.5rem' }}
+        >
           <Node ref={nodeRef} stage={stage} isActive={isActive} />
         </div>
         <div
@@ -298,85 +340,125 @@ function TimelineRow({ stage, isLeft, isActive, prefersReduced, nodeRef }: RowPr
             isActive ? 'opacity-100 translate-x-0' : hiddenRight
           }`}
         >
-          <StageCard stage={stage} />
+          <StageCard stage={stage} isActive={isActive} />
         </div>
       </div>
     </>
   )
 }
 
-/* ─── Node ───────────────────────────────────────────────────────────── */
+/* ─── Node — styled as a brass deck fitting ──────────────────────────── */
 
-const Node = forwardRef<HTMLDivElement, { stage: Stage; isActive: boolean }>(
-  function Node({ stage, isActive }, ref) {
-    return (
-      <div
-        ref={ref}
-        aria-label={`Stage ${stage.number}`}
-        className={`
-          relative flex items-center justify-center shrink-0
-          w-10 h-10 rounded-full font-mono text-xs font-bold select-none z-10
-          transition-all duration-500
-          ${isActive
-            ? 'bg-accent text-white scale-110 shadow-[0_0_0_6px_oklch(0.55_0.12_220_/_0.18)]'
-            : 'bg-primary text-primary-foreground/40 border border-accent/30 scale-100'
-          }
-        `}
-      >
-        {stage.number}
-        {/* Pulse ring when active */}
-        {isActive && (
-          <span
-            aria-hidden="true"
-            className="absolute inset-0 rounded-full animate-ping opacity-20 bg-accent"
-          />
-        )}
-      </div>
-    )
-  }
-)
-
-/* ─── Card ───────────────────────────────────────────────────────────── */
-
-function StageCard({ stage }: { stage: Stage }) {
+const Node = forwardRef<
+  HTMLDivElement,
+  { stage: Stage; isActive: boolean }
+>(function Node({ stage, isActive }, ref) {
   return (
-    <article className="group w-full overflow-hidden rounded-2xl">
-      {/* Full-bleed image with overlay text */}
+    <div
+      ref={ref}
+      aria-label={`Stage ${stage.number}`}
+      className="relative flex items-center justify-center shrink-0 w-10 h-10 rounded-full font-mono text-xs font-bold select-none z-10 transition-all duration-500"
+      style={
+        isActive
+          ? {
+              background: 'oklch(0.55 0.12 220)',
+              color: 'oklch(0.98 0 0)',
+              transform: 'scale(1.1)',
+              boxShadow:
+                '0 0 0 4px oklch(0.68 0.07 65), 0 0 0 7px oklch(0.55 0.12 220 / 0.3)',
+            }
+          : {
+              background: 'oklch(0.22 0.02 50)',
+              color: 'oklch(0.68 0.07 65)',
+              border: '2px solid oklch(0.68 0.07 65 / 0.6)',
+              transform: 'scale(1)',
+            }
+      }
+    >
+      {stage.number}
+      {isActive && (
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 rounded-full animate-ping"
+          style={{ background: 'oklch(0.55 0.12 220 / 0.2)' }}
+        />
+      )}
+    </div>
+  )
+})
+
+/* ─── Card — document laid on teak deck ─────────────────────────────── */
+
+function StageCard({
+  stage,
+  isActive,
+}: {
+  stage: Stage
+  isActive: boolean
+}) {
+  return (
+    <article
+      className="group w-full rounded-xl overflow-hidden shadow-lg transition-shadow duration-500"
+      style={{
+        background: 'oklch(0.99 0.003 85)',
+        boxShadow: isActive
+          ? '0 8px 32px oklch(0.22 0.02 50 / 0.28)'
+          : '0 2px 12px oklch(0.22 0.02 50 / 0.15)',
+      }}
+    >
+      {/* Teak-stripe top border */}
+      <div
+        aria-hidden="true"
+        className="h-[5px] w-full"
+        style={{
+          background: `repeating-linear-gradient(90deg,
+            oklch(0.68 0.07 65) 0px, oklch(0.60 0.06 58) ${PLANK_W}px,
+            oklch(0.22 0.02 50) ${PLANK_W}px, oklch(0.22 0.02 50) ${PLANK_W + CAULK_W}px
+          )`,
+        }}
+      />
+
+      {/* Image */}
       <div className="relative w-full aspect-[4/3] overflow-hidden">
         <Image
           src={stage.image}
           alt={stage.imageAlt}
           fill
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
           sizes="(max-width: 680px) 100vw, 45vw"
         />
+      </div>
 
-        {/* Dark gradient scrim — text lives here */}
-        <div
-          className="absolute inset-0 flex flex-col justify-end p-6 sm:p-7"
-          style={{
-            background:
-              'linear-gradient(to top, oklch(0.12 0.03 250 / 0.92) 0%, oklch(0.12 0.03 250 / 0.55) 45%, transparent 100%)',
-          }}
-        >
-          {/* Stage number — top-left corner badge */}
+      {/* Text body */}
+      <div className="px-6 py-5">
+        <div className="flex items-center gap-3 mb-3">
           <span
-            className="absolute top-5 left-5 font-mono text-xs font-bold tracking-widest text-accent bg-primary/70 backdrop-blur-sm px-2.5 py-1 rounded-full border border-accent/30"
+            className="font-mono text-xs font-bold tracking-widest px-2.5 py-1 rounded-full"
+            style={{
+              background: 'oklch(0.55 0.12 220 / 0.1)',
+              color: 'oklch(0.45 0.10 220)',
+            }}
           >
             {stage.number}
           </span>
-
-          {/* Title & description */}
-          <h3 className="font-serif text-xl sm:text-2xl font-semibold text-white leading-snug text-balance mb-2">
-            {stage.title}
-          </h3>
-          <p className="text-sm text-white/70 leading-relaxed line-clamp-3">
-            {stage.description}
-          </p>
-
-          {/* Accent underline that grows on hover */}
-          <div className="mt-4 h-px w-8 bg-accent transition-all duration-300 group-hover:w-16" aria-hidden="true" />
+          <div
+            aria-hidden="true"
+            className="flex-1 h-px"
+            style={{ background: 'oklch(0.68 0.07 65 / 0.35)' }}
+          />
         </div>
+        <h3
+          className="font-serif text-xl sm:text-2xl font-semibold leading-snug text-balance mb-2"
+          style={{ color: 'oklch(0.18 0.03 50)' }}
+        >
+          {stage.title}
+        </h3>
+        <p
+          className="text-sm leading-relaxed"
+          style={{ color: 'oklch(0.38 0.03 55)' }}
+        >
+          {stage.description}
+        </p>
       </div>
     </article>
   )
