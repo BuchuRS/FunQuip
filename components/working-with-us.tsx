@@ -82,32 +82,27 @@ const VB_W = 1000
 const ROW_H = 280  // viewBox units per stage row
 
 function buildPath(n: number): string {
-  // Start top-centre, sweep right, curve down, sweep left, curve down…
-  // Each stage occupies ROW_H units of height.
-  const cx = VB_W / 2   // centre x
-  const amp = VB_W * 0.36 // amplitude — how far left/right the path reaches
-  const curveR = ROW_H * 0.55 // vertical depth of the connecting S-curve
+  // Each row is one smooth S-curve from centre → peak → centre.
+  // Using a single cubic bezier per row guarantees C1-continuity (no kinks):
+  // the end tangent of row i is always vertical (pointing straight down),
+  // which matches the start tangent of row i+1 — so the join is smooth.
+  const cx = VB_W / 2
+  const amp = VB_W * 0.38 // horizontal reach left / right of centre
+
+  // Control-point vertical offset — how far the CP "leans" into the curve.
+  // A value of 0.7×ROW_H creates a lazy S with rounded corners.
+  const cv = ROW_H * 0.72
 
   let d = `M ${cx} 0`
 
   for (let i = 0; i < n; i++) {
     const y0 = i * ROW_H
-    const yMid = y0 + ROW_H * 0.5
     const y1 = (i + 1) * ROW_H
+    const peak = i % 2 === 0 ? cx + amp : cx - amp
 
-    if (i % 2 === 0) {
-      // Sweep right
-      const x1 = cx + amp
-      d += ` C ${cx + amp * 0.5} ${y0}, ${x1} ${y0 + ROW_H * 0.25}, ${x1} ${yMid}`
-      // Curve down and back to centre
-      d += ` C ${x1} ${yMid + curveR}, ${cx} ${y1 - ROW_H * 0.1}, ${cx} ${y1}`
-    } else {
-      // Sweep left
-      const x1 = cx - amp
-      d += ` C ${cx - amp * 0.5} ${y0}, ${x1} ${y0 + ROW_H * 0.25}, ${x1} ${yMid}`
-      // Curve down and back to centre
-      d += ` C ${x1} ${yMid + curveR}, ${cx} ${y1 - ROW_H * 0.1}, ${cx} ${y1}`
-    }
+    // CP1: pulls tangent horizontally toward the peak, anchored near y0
+    // CP2: returns tangent to vertical before reaching y1
+    d += ` C ${peak} ${y0 + cv}, ${peak} ${y1 - cv}, ${cx} ${y1}`
   }
 
   return d
@@ -177,10 +172,17 @@ export function WorkingWithUsSection() {
           fillPath.style.strokeDashoffset = `${totalLen - drawn}`
         }
 
-        // Position Seabob at the tip of the drawn path
+        // Position & rotate Seabob at the tip of the drawn path
         if (seabob && path) {
-          const pt = path.getPointAtLength(Math.min(drawn, totalLen))
-          // Convert SVG coords to section-relative pixels
+          const clamped = Math.min(drawn, totalLen)
+          const pt = path.getPointAtLength(clamped)
+          // Sample a tiny step ahead to compute the local tangent direction
+          const delta = 4
+          const pt2 = path.getPointAtLength(Math.min(clamped + delta, totalLen))
+          const dx = pt2.x - pt.x
+          const dy = pt2.y - pt.y
+          const angleDeg = Math.atan2(dy, dx) * (180 / Math.PI) - 90
+
           const svgEl = path.ownerSVGElement
           if (svgEl) {
             const svgRect = svgEl.getBoundingClientRect()
@@ -190,6 +192,7 @@ export function WorkingWithUsSection() {
             const py = pt.y * scaleY
             seabob.style.left = `${px}px`
             seabob.style.top = `${py}px`
+            seabob.style.transform = `translate(-50%, -50%) rotate(${angleDeg}deg)`
           }
         }
 
@@ -276,7 +279,7 @@ export function WorkingWithUsSection() {
           <div
             ref={seabobRef}
             aria-hidden="true"
-            className="absolute z-20 -translate-x-1/2 -translate-y-1/2 pointer-events-none will-change-transform"
+            className="absolute z-20 pointer-events-none will-change-transform"
             style={{ width: 100, height: 240 }}
           >
             <Image
