@@ -22,10 +22,10 @@ export function HeroSection() {
       {/* Content - Centered */}
       <div className="relative z-10 mx-auto max-w-5xl px-6 pt-32 pb-16 lg:px-8 text-center flex-1 flex flex-col items-center justify-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white uppercase leading-tight">
-          <span className="block" style={{ fontFamily: 'var(--font-inter)' }}>Designed for Performance.</span>
-          <span className="block italic" style={{ fontFamily: 'var(--font-playfair)' }}>Built for the Sea.</span>
+          <span className="block" style={{ fontFamily: 'var(--font-inter)' }}>Inflatable Platforms</span>
+          <span className="block italic" style={{ fontFamily: 'var(--font-playfair)' }}>for Superyachts.</span>
         </h1>
-        
+
         <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/products"
@@ -79,8 +79,8 @@ export function FeaturesSection() {
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         {/* Elegant heading with strong hierarchy */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-12 md:mb-16">
-          Crafted for<br />
-          <span className="text-accent">Life beyond the deck</span>
+          Modular platforms<br />
+          <span className="text-accent">for every application</span>
         </h2>
 
         {/* Asymmetric category grid - matching reference layout */}
@@ -180,26 +180,27 @@ export function AboutPreviewSection() {
           </div>
           <div>
             <p className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
-              About Xflatable
+              Why choose FunQuip
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Dutch Floating Engineering, Monaco Finish
+              Super-firm underfoot. Zero obtrusive branding.
             </h2>
             <p className="mt-6 text-muted-foreground leading-relaxed">
-              As a sister company of Xquip, Xflatable brings the same commitment
-              to excellence that has defined luxury yacht equipment for decades.
-              Our inflatable platforms are designed in Europe and manufactured
-              to the highest standards.
+              Our inflatable platforms are a practical solution for significantly
+              increasing your square meterage — whether you need a tender launch
+              zone, a lounge area, or a stable crew workstation. The quality of
+              our work speaks for itself.
             </p>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              We use Marine-X TPU, a non-toxic alternative to traditional PVC,
-              reflecting our dedication to reducing the superyacht industry&apos;s
-              environmental footprint while delivering uncompromising quality.
+              Choose Marine-X TPU for a lightweight, eco-conscious finish with
+              exceptional tear strength, or our durable PVC range for everyday
+              reliability. Both carry a 5-year limited warranty and access to
+              global service centres.
             </p>
             <div className="mt-8">
               <Button variant="outline" asChild>
                 <Link href="/about">
-                  Learn More About Us
+                  Learn more about us
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -216,11 +217,11 @@ export function CTASection() {
     <section className="py-24 bg-primary text-primary-foreground">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Ready to Elevate Your Yacht Experience?
+          Have a project in mind?
         </h2>
         <p className="mt-4 text-lg text-primary-foreground/70 max-w-2xl mx-auto">
-          Our team is ready to help you find the perfect inflatable solution.
-          Get in touch for custom configurations and expert guidance.
+          Every great project starts with a conversation. Share a few details
+          and our team will be in touch to build your bespoke design brief.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
           <Button

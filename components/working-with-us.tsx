@@ -18,7 +18,7 @@ const STAGES: Stage[] = [
     number: '01',
     title: 'Enquiry & Brief',
     description:
-      'Tell us about your vessel, your crew, and how you use the water. We listen carefully to understand your needs before recommending a single product.',
+      'Every great project starts with a conversation. Share a few basic details with us — just enough to get the ball rolling. We are always happy to sign an NDA if needed.',
     image: '/images/wwu-01-enquiry.png',
     imageAlt: 'Client and engineer discussing a brief over yacht blueprints',
   },
@@ -26,7 +26,7 @@ const STAGES: Stage[] = [
     number: '02',
     title: 'Design & Configuration',
     description:
-      'Our engineers configure the right platform, sea pool, or inflatable for your yacht — tailored dimensions, colours, fittings, and accessories.',
+      'We develop your wishlist into a detailed design brief using your General Arrangement. We explore position, pool depth, walkway widths, toy capacity, and any bespoke requirements — our designs are entirely custom.',
     image: '/images/wwu-02-design.png',
     imageAlt: "CAD drawings and colour samples on a marine engineer's desk",
   },
@@ -34,7 +34,7 @@ const STAGES: Stage[] = [
     number: '03',
     title: 'Proposal & Approval',
     description:
-      'You receive a detailed proposal with technical drawings and transparent pricing. We refine until every detail is right before signing off.',
+      'Our design team produces a bespoke concept drawing — typically within 7–10 days. You review, give feedback, and we fine-tune until everything is right. At this point we provide a formal quote in TPU or PVC.',
     image: '/images/wwu-03-proposal.png',
     imageAlt: 'Two professionals reviewing a printed proposal document',
   },
@@ -42,7 +42,7 @@ const STAGES: Stage[] = [
     number: '04',
     title: 'Manufacture',
     description:
-      'Skilled craftspeople build your product in Europe using Marine-X TPU and certified hardware. Rigorous quality checks at every stage.',
+      'Once approved, we issue an invoice — 50% secures your production slot, 50% before dispatch. Our TPU platforms are produced in Europe; our PVC range in China. Both facilities uphold strong ethical labour and quality standards.',
     image: '/images/wwu-04-manufacture.png',
     imageAlt: 'Craftsperson heat-welding TPU fabric in a marine workshop',
   },
@@ -50,7 +50,7 @@ const STAGES: Stage[] = [
     number: '05',
     title: 'Sea Trial & Delivery',
     description:
-      'We arrange white-glove delivery to your marina and, where possible, join the first deployment so your crew is confident from day one.',
+      'For Med delivery you pay only for transport within Europe — we cover import duties into Monaco. We personally deliver to mainland Europe to ensure everything arrives exactly as expected.',
     image: '/images/wwu-05-seatrial.png',
     imageAlt: 'Crew deploying a swim platform from a superyacht at anchor',
   },
@@ -58,7 +58,7 @@ const STAGES: Stage[] = [
     number: '06',
     title: 'Aftercare',
     description:
-      'Our relationship continues long after delivery — service schedules, spare parts, and direct access to the team who built your product.',
+      'All our inflatables carry a 5-year limited warranty and access to global service centres. When your TPU platform reaches end of life, we offer upcycling options here in the UK — we are with you for the long term.',
     image: '/images/wwu-06-aftercare.png',
     imageAlt: 'Marine technician servicing a luxury inflatable at a marina',
   },
@@ -161,9 +161,9 @@ export function WorkingWithUsSection() {
             className="mt-5 h-px w-20 bg-border"
           />
           <p className="mt-6 max-w-lg leading-relaxed text-sm sm:text-base text-muted-foreground">
-            Six clear steps from first conversation to long-term partnership —
-            every stage guided by the people who care most about your time on
-            the water.
+            From initial enquiry through to aftercare, here is what to expect
+            when you work with us — eight clear stages, guided by the people
+            who designed and built your platform.
           </p>
         </header>
 
