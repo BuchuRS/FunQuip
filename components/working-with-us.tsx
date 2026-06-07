@@ -98,7 +98,7 @@ function buildPath(n: number): string {
   for (let i = 0; i < n; i++) {
     const y0 = i * ROW_H
     const y1 = (i + 1) * ROW_H
-    const peak = i % 2 === 0 ? cx + amp : cx - amp
+    const peak = i % 2 === 0 ? cx - amp : cx + amp
 
     // CP1: pulls tangent horizontally toward the peak, anchored near y0
     // CP2: returns tangent to vertical before reaching y1
