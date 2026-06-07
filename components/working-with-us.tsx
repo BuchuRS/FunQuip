@@ -16,49 +16,49 @@ interface Stage {
 const STAGES: Stage[] = [
   {
     number: '01',
-    title: 'Enquiry & Brief',
+    title: 'Initial Enquiry',
     description:
-      'Every great project starts with a conversation. Share a few basic details with us — just enough to get the ball rolling. We are always happy to sign an NDA if needed.',
+      'Every great project starts with a conversation. Share a few basic details with us — just enough to get the ball rolling.',
     image: '/images/wwu-01-enquiry.png',
     imageAlt: 'Client and engineer discussing a brief over yacht blueprints',
   },
   {
     number: '02',
-    title: 'Design & Configuration',
+    title: 'Design Brief',
     description:
-      'We develop your wishlist into a detailed design brief using your General Arrangement. We explore position, pool depth, walkway widths, toy capacity, and any bespoke requirements — our designs are entirely custom.',
+      "We'll be in touch to develop your wishlist and build a detailed design brief. We'll ask for your General Arrangement — we're always happy to sign an NDA. We explore the intended position of your inflatable, whether you envision a pool, lounging platform or toy dock, and how many toys it needs to support. Our designs are entirely bespoke.",
     image: '/images/wwu-02-design.png',
     imageAlt: "CAD drawings and colour samples on a marine engineer's desk",
   },
   {
     number: '03',
-    title: 'Proposal & Approval',
+    title: 'Concept Drawing & Confirmation',
     description:
-      'Our design team produces a bespoke concept drawing — typically within 7–10 days. You review, give feedback, and we fine-tune until everything is right. At this point we provide a formal quote in TPU or PVC.',
+      "Our design team creates a bespoke proposal tailored to your requirements — typically within 7–10 days. This is your opportunity to give feedback. We fine-tune the concept until everything is just right, then provide a formal quote in TPU or PVC.",
     image: '/images/wwu-03-proposal.png',
     imageAlt: 'Two professionals reviewing a printed proposal document',
   },
   {
     number: '04',
-    title: 'Manufacture',
+    title: 'Invoicing & Production',
     description:
-      'Once approved, we issue an invoice — 50% secures your production slot, 50% before dispatch. Our TPU platforms are produced in Europe; our PVC range in China. Both facilities uphold strong ethical labour and quality standards.',
+      "Once you're happy with the design, we issue an invoice — 50% secures your production slot, 50% is due before dispatch. Our TPU inflatables are produced in Europe; our PVC platforms in China. Both facilities operate with a strong focus on ethical labour practices and material quality.",
     image: '/images/wwu-04-manufacture.png',
     imageAlt: 'Craftsperson heat-welding TPU fabric in a marine workshop',
   },
   {
     number: '05',
-    title: 'Sea Trial & Delivery',
+    title: 'Delivery',
     description:
-      'For Med delivery you pay only for transport within Europe — we cover import duties into Monaco. We personally deliver to mainland Europe to ensure everything arrives exactly as expected.',
+      "Time to get excited. For Med delivery you'll only pay for transport within Europe — we cover all import duties into Monaco. We personally deliver to mainland Europe to ensure everything arrives exactly as expected.",
     image: '/images/wwu-05-seatrial.png',
     imageAlt: 'Crew deploying a swim platform from a superyacht at anchor',
   },
   {
     number: '06',
-    title: 'Aftercare',
+    title: 'Customer Support',
     description:
-      'All our inflatables carry a 5-year limited warranty and access to global service centres. When your TPU platform reaches end of life, we offer upcycling options here in the UK — we are with you for the long term.',
+      "Even after delivery, we're here to help. All our inflatables come with a 5-year limited warranty and access to global service centres. When your TPU platform reaches the end of its life, we offer upcycling options here in the UK — fancy a duffle bag made from your old inflatable? Just let us know.",
     image: '/images/wwu-06-aftercare.png',
     imageAlt: 'Marine technician servicing a luxury inflatable at a marina',
   },
@@ -161,9 +161,9 @@ export function WorkingWithUsSection() {
             className="mt-5 h-px w-20 bg-border"
           />
           <p className="mt-6 max-w-lg leading-relaxed text-sm sm:text-base text-muted-foreground">
-            From initial enquiry through to aftercare, here is what to expect
-            when you work with us — eight clear stages, guided by the people
-            who designed and built your platform.
+            What to expect from the process — six clear stages from initial
+            enquiry to long-term customer support, guided by the people who
+            designed and built your platform.
           </p>
         </header>
 
