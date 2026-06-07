@@ -222,8 +222,12 @@ export function WorkingWithUsSection() {
             {STAGES.map((stage, i) => {
               const isLeft = i % 2 === 0
               const isActive = i <= activeIndex
+              const isFeatured = stage.featured
               return (
-                <li key={stage.number} className="relative pb-16 last:pb-0">
+                <li
+                  key={stage.number}
+                  className={`relative ${isFeatured ? 'pb-0' : 'pb-16'} last:pb-0`}
+                >
                   <TimelineRow
                     stage={stage}
                     isLeft={isLeft}
@@ -261,6 +265,56 @@ interface RowProps {
 function TimelineRow({ stage, isLeft, isActive, nodeRef }: RowProps) {
   const hiddenLeft = 'opacity-0 -translate-x-10'
   const hiddenRight = 'opacity-0 translate-x-10'
+  const isFeatured = stage.featured
+
+  if (isFeatured) {
+    return (
+      <div className="relative py-8">
+        {/* Featured stage: full width */}
+        <div className="w-full">
+          <div
+            className={`transition-all duration-700 ease-out ${
+              isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
+            <StageCard stage={stage} isActive={isActive} />
+          </div>
+        </div>
+
+        {/* Horizontal spine below featured card */}
+        <div className="flex items-center gap-4 mt-8">
+          <div
+            ref={nodeRef}
+            aria-label={`Stage ${stage.number}`}
+            className="shrink-0 flex items-center justify-center w-9 h-9 rounded-full font-sans text-xs font-bold select-none transition-all duration-500"
+            style={
+              isActive
+                ? {
+                    background: 'var(--color-ocean)',
+                    color: '#fff',
+                    boxShadow: '0 0 0 4px hsl(var(--background)), 0 0 0 6px var(--color-ocean)',
+                    transform: 'scale(1.1)',
+                  }
+                : {
+                    background: 'var(--background)',
+                    color: 'var(--color-ocean)',
+                    border: '2px solid color-mix(in oklch, var(--color-ocean) 40%, transparent)',
+                    transform: 'scale(1)',
+                  }
+            }
+          >
+            {stage.number}
+          </div>
+          <div
+            className="flex-1 h-0.5 transition-colors duration-500"
+            style={{
+              background: isActive ? 'var(--color-ocean)' : 'var(--border)',
+            }}
+          />
+        </div>
+      </div>
+    )
+  }
 
   return (
     <>
