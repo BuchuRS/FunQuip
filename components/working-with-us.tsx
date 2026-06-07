@@ -67,7 +67,7 @@ const STAGES: Stage[] = [
 /* ─── Section ───────────────────────────────────────────────────────── */
 
 // Height of the Seabob icon on the spine (px)
-const SEABOB_H = 120
+const SEABOB_H = 180
 
 export function WorkingWithUsSection() {
   const spineRef = useRef<HTMLDivElement>(null)
@@ -186,14 +186,14 @@ export function WorkingWithUsSection() {
               ref={seabobRef}
               aria-hidden="true"
               className="absolute left-1/2 -translate-x-1/2 top-0 z-20 will-change-transform drop-shadow-md"
-              style={{ width: `${SEABOB_H * 0.40}px`, height: `${SEABOB_H}px` }}
+              style={{ width: `${SEABOB_H * 0.50}px`, height: `${SEABOB_H}px` }}
             >
               <Image
                 src="/images/seabob-topdown.png"
                 alt=""
                 fill
                 className="object-contain"
-                sizes="40px"
+                sizes="90px"
               />
             </div>
           </div>
