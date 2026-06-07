@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, forwardRef } from 'react'
+import Image from 'next/image'
 
 /* ─── Data ──────────────────────────────────────────────────────────── */
 
@@ -8,6 +9,8 @@ interface Stage {
   number: string
   title: string
   description: string
+  image: string
+  imageAlt: string
 }
 
 const STAGES: Stage[] = [
@@ -16,36 +19,48 @@ const STAGES: Stage[] = [
     title: 'Enquiry & Brief',
     description:
       'Tell us about your vessel, your crew, and how you use the water. We listen carefully to understand your needs before recommending a single product.',
+    image: '/images/wwu-01-enquiry.png',
+    imageAlt: 'Client and engineer discussing a brief over yacht blueprints',
   },
   {
     number: '02',
     title: 'Design & Configuration',
     description:
       'Our engineers configure the right platform, sea pool, or inflatable for your yacht — tailored dimensions, colours, fittings, and accessories.',
+    image: '/images/wwu-02-design.png',
+    imageAlt: 'CAD drawings and colour samples on a marine engineer\'s desk',
   },
   {
     number: '03',
     title: 'Proposal & Approval',
     description:
       'You receive a detailed proposal with technical drawings and transparent pricing. We refine until every detail is right before signing off.',
+    image: '/images/wwu-03-proposal.png',
+    imageAlt: 'Two professionals reviewing a printed proposal document',
   },
   {
     number: '04',
     title: 'Manufacture',
     description:
       'Skilled craftspeople build your product in Europe using Marine-X TPU and certified hardware. Rigorous quality checks at every stage.',
+    image: '/images/wwu-04-manufacture.png',
+    imageAlt: 'Craftsperson heat-welding TPU fabric in a marine workshop',
   },
   {
     number: '05',
     title: 'Sea Trial & Delivery',
     description:
       'We arrange white-glove delivery to your marina and, where possible, join the first deployment so your crew is confident from day one.',
+    image: '/images/wwu-05-seatrial.png',
+    imageAlt: 'Crew deploying a swim platform from a superyacht at anchor',
   },
   {
     number: '06',
     title: 'Aftercare',
     description:
       'Our relationship continues long after delivery — service schedules, spare parts, and direct access to the team who built your product.',
+    image: '/images/wwu-06-aftercare.png',
+    imageAlt: 'Marine technician servicing a luxury inflatable at a marina',
   },
 ]
 
@@ -191,9 +206,8 @@ interface RowProps {
 }
 
 function TimelineRow({ stage, isLeft, isActive, prefersReduced, nodeRef }: RowProps) {
-  const anim = prefersReduced ? '' : isActive ? 'opacity-100 translate-x-0' : ''
-  const hiddenLeft = prefersReduced ? 'opacity-0 -translate-x-8' : 'opacity-0 -translate-x-8'
-  const hiddenRight = prefersReduced ? 'opacity-0 translate-x-8' : 'opacity-0 translate-x-8'
+  const hiddenLeft = 'opacity-0 -translate-x-8'
+  const hiddenRight = 'opacity-0 translate-x-8'
 
   return (
     <>
@@ -204,14 +218,13 @@ function TimelineRow({ stage, isLeft, isActive, prefersReduced, nodeRef }: RowPr
           {isLeft ? (
             <div
               className={`
-                transition-all duration-700 ease-out
-                ${isActive ? `opacity-100 translate-x-0` : hiddenLeft}
+                w-full max-w-sm transition-all duration-700 ease-out
+                ${isActive ? 'opacity-100 translate-x-0' : hiddenLeft}
               `}
             >
               <StageCard stage={stage} align="right" />
             </div>
           ) : (
-            /* spacer to keep the column occupied */
             <div className="w-full max-w-sm" aria-hidden="true" />
           )}
         </div>
@@ -226,8 +239,8 @@ function TimelineRow({ stage, isLeft, isActive, prefersReduced, nodeRef }: RowPr
           {!isLeft ? (
             <div
               className={`
-                transition-all duration-700 ease-out
-                ${isActive ? `opacity-100 translate-x-0` : hiddenRight}
+                w-full max-w-sm transition-all duration-700 ease-out
+                ${isActive ? 'opacity-100 translate-x-0' : hiddenRight}
               `}
             >
               <StageCard stage={stage} align="left" />
@@ -250,7 +263,7 @@ function TimelineRow({ stage, isLeft, isActive, prefersReduced, nodeRef }: RowPr
           className={`
             flex-1 pt-1
             transition-all duration-700 ease-out
-            ${isActive ? `opacity-100 translate-x-0` : hiddenRight}
+            ${isActive ? 'opacity-100 translate-x-0' : hiddenRight}
           `}
         >
           <StageCard stage={stage} align="left" />
@@ -261,8 +274,6 @@ function TimelineRow({ stage, isLeft, isActive, prefersReduced, nodeRef }: RowPr
 }
 
 /* ─── Node ───────────────────────────────────────────────────────────── */
-
-import { forwardRef } from 'react'
 
 const Node = forwardRef<HTMLDivElement, { stage: Stage; isActive: boolean }>(
   function Node({ stage, isActive }, ref) {
@@ -292,22 +303,36 @@ function StageCard({ stage, align }: { stage: Stage; align: 'left' | 'right' }) 
   return (
     <article
       className={`
-        w-full max-w-sm
-        rounded-2xl border border-border bg-card px-6 py-5
+        w-full max-w-sm overflow-hidden
+        rounded-2xl border border-border bg-card
         shadow-sm hover:shadow-md hover:border-accent/40
         transition-shadow duration-300
-        ${align === 'right' ? 'text-right ml-auto' : 'text-left'}
+        ${align === 'right' ? 'ml-auto' : ''}
       `}
     >
-      <p className="text-xs font-mono font-semibold tracking-wider text-accent mb-2 uppercase">
-        {stage.number}
-      </p>
-      <h3 className="text-base font-semibold text-foreground mb-2 text-balance">
-        {stage.title}
-      </h3>
-      <p className="text-sm text-muted-foreground leading-relaxed">
-        {stage.description}
-      </p>
+      {/* Image */}
+      <div className="relative w-full aspect-[4/3] overflow-hidden">
+        <Image
+          src={stage.image}
+          alt={stage.imageAlt}
+          fill
+          className="object-cover transition-transform duration-500 hover:scale-105"
+          sizes="(max-width: 680px) 100vw, 320px"
+        />
+      </div>
+
+      {/* Text */}
+      <div className={`px-6 py-5 ${align === 'right' ? 'text-right' : 'text-left'}`}>
+        <p className="text-xs font-mono font-semibold tracking-wider text-accent mb-2 uppercase">
+          {stage.number}
+        </p>
+        <h3 className="text-base font-semibold text-foreground mb-2 text-balance">
+          {stage.title}
+        </h3>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          {stage.description}
+        </p>
+      </div>
     </article>
   )
 }
