@@ -28,7 +28,7 @@ const STAGES: Stage[] = [
     description:
       'Our engineers configure the right platform, sea pool, or inflatable for your yacht — tailored dimensions, colours, fittings, and accessories.',
     image: '/images/wwu-02-design.png',
-    imageAlt: 'CAD drawings and colour samples on a marine engineer\'s desk',
+    imageAlt: "CAD drawings and colour samples on a marine engineer's desk",
   },
   {
     number: '03',
@@ -64,7 +64,7 @@ const STAGES: Stage[] = [
   },
 ]
 
-/* ─── Component ─────────────────────────────────────────────────────── */
+/* ─── Section ───────────────────────────────────────────────────────── */
 
 export function WorkingWithUsSection() {
   const spineRef = useRef<HTMLDivElement>(null)
@@ -122,22 +122,31 @@ export function WorkingWithUsSection() {
   }, [prefersReduced])
 
   return (
-    <section aria-labelledby="wwu-heading" className="py-24 md:py-32 bg-background">
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+    <section
+      aria-labelledby="wwu-heading"
+      className="relative py-24 md:py-36 overflow-hidden bg-primary"
+    >
+      {/* Water ripple backdrop */}
+      <WaterRipple />
 
-        <header className="mb-16 md:mb-24">
-          <p className="text-sm font-medium uppercase tracking-widest text-accent mb-3">
+      <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
+
+        {/* Header */}
+        <header className="mb-20 md:mb-28">
+          <p className="text-xs font-medium uppercase tracking-[0.25em] text-accent mb-4">
             Our Process
           </p>
           <h2
             id="wwu-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground text-balance"
+            className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-primary-foreground text-balance leading-[1.1]"
           >
             Working With Us
           </h2>
-          <p className="mt-4 max-w-xl text-muted-foreground leading-relaxed">
-            Six clear steps from first conversation to long-term partnership — every
-            stage guided by the people who care most about your time on the water.
+          <div className="mt-5 h-px w-16 bg-accent" aria-hidden="true" />
+          <p className="mt-6 max-w-lg text-primary-foreground/60 leading-relaxed text-sm sm:text-base">
+            Six clear steps from first conversation to long-term partnership —
+            every stage guided by the people who care most about your time on
+            the water.
           </p>
         </header>
 
@@ -146,7 +155,8 @@ export function WorkingWithUsSection() {
           {/* Spine track */}
           <div
             aria-hidden="true"
-            className="absolute inset-y-0 w-0.5 bg-border left-1/2 -translate-x-px timeline-spine-x"
+            className="absolute inset-y-0 w-0.5 left-1/2 -translate-x-px timeline-spine-x"
+            style={{ background: 'oklch(0.55 0.12 220 / 0.25)' }}
           >
             <div
               ref={fillRef}
@@ -155,11 +165,11 @@ export function WorkingWithUsSection() {
             />
           </div>
 
-          {/* Ghost spine for measurements */}
+          {/* Ghost spine for scroll measurements */}
           <div
             ref={spineRef}
             aria-hidden="true"
-            className="absolute inset-y-0 w-0 left-1/2 -translate-x-px timeline-spine-x"
+            className="absolute inset-y-0 w-0 left-1/2 timeline-spine-x"
           />
 
           <ol aria-label="Process stages" className="m-0 p-0 list-none">
@@ -182,7 +192,7 @@ export function WorkingWithUsSection() {
         </div>
       </div>
 
-      {/* Inline styles for responsive spine position */}
+      {/* Responsive spine position */}
       <style>{`
         @media (max-width: 680px) {
           .timeline-spine-x {
@@ -192,6 +202,35 @@ export function WorkingWithUsSection() {
         }
       `}</style>
     </section>
+  )
+}
+
+/* ─── Water Ripple SVG backdrop ─────────────────────────────────────── */
+
+function WaterRipple() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 w-full h-full"
+      preserveAspectRatio="xMidYMid slice"
+      viewBox="0 0 1200 900"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* Radiate from bottom-centre — like a stone dropped in water */}
+      {[80, 160, 240, 320, 400, 490, 585, 685, 790, 900].map((r, i) => (
+        <ellipse
+          key={r}
+          cx="600"
+          cy="960"
+          rx={r * 2.6}
+          ry={r}
+          fill="none"
+          stroke="oklch(0.55 0.12 220)"
+          strokeWidth="0.75"
+          opacity={0.06 + i * 0.012}
+        />
+      ))}
+    </svg>
   )
 }
 
@@ -206,23 +245,22 @@ interface RowProps {
 }
 
 function TimelineRow({ stage, isLeft, isActive, prefersReduced, nodeRef }: RowProps) {
-  const hiddenLeft = 'opacity-0 -translate-x-8'
-  const hiddenRight = 'opacity-0 translate-x-8'
+  const hiddenLeft = 'opacity-0 -translate-x-10'
+  const hiddenRight = 'opacity-0 translate-x-10'
 
   return (
     <>
-      {/* ── Desktop layout (≥681px): two columns + centred node ── */}
-      <div className="hidden sm-timeline:flex items-start">
+      {/* ── Desktop (≥681px) ── */}
+      <div className="hidden sm-timeline:flex items-center">
         {/* Left column */}
-        <div className="flex-1 pr-8 pt-1 flex justify-end">
+        <div className="flex-1 pr-10 flex justify-end">
           {isLeft ? (
             <div
-              className={`
-                w-full transition-all duration-700 ease-out
-                ${isActive ? 'opacity-100 translate-x-0' : hiddenLeft}
-              `}
+              className={`w-full transition-all duration-700 ease-out ${
+                isActive ? 'opacity-100 translate-x-0' : hiddenLeft
+              }`}
             >
-              <StageCard stage={stage} align="right" />
+              <StageCard stage={stage} />
             </div>
           ) : (
             <div className="w-full" aria-hidden="true" />
@@ -235,15 +273,14 @@ function TimelineRow({ stage, isLeft, isActive, prefersReduced, nodeRef }: RowPr
         </div>
 
         {/* Right column */}
-        <div className="flex-1 pl-8 pt-1">
+        <div className="flex-1 pl-10">
           {!isLeft ? (
             <div
-              className={`
-                w-full transition-all duration-700 ease-out
-                ${isActive ? 'opacity-100 translate-x-0' : hiddenRight}
-              `}
+              className={`w-full transition-all duration-700 ease-out ${
+                isActive ? 'opacity-100 translate-x-0' : hiddenRight
+              }`}
             >
-              <StageCard stage={stage} align="left" />
+              <StageCard stage={stage} />
             </div>
           ) : (
             <div className="w-full" aria-hidden="true" />
@@ -251,22 +288,17 @@ function TimelineRow({ stage, isLeft, isActive, prefersReduced, nodeRef }: RowPr
         </div>
       </div>
 
-      {/* ── Mobile layout (<681px): spine on far left, card to right ── */}
+      {/* ── Mobile (<681px) ── */}
       <div className="flex items-start sm-timeline:hidden gap-5 pl-[1.25rem]">
-        {/* Node sits ON the spine */}
         <div className="shrink-0 -translate-x-1/2 flex justify-center" style={{ width: '2.5rem' }}>
           <Node ref={nodeRef} stage={stage} isActive={isActive} />
         </div>
-
-        {/* Card */}
         <div
-          className={`
-            flex-1 pt-1
-            transition-all duration-700 ease-out
-            ${isActive ? 'opacity-100 translate-x-0' : hiddenRight}
-          `}
+          className={`flex-1 transition-all duration-700 ease-out ${
+            isActive ? 'opacity-100 translate-x-0' : hiddenRight
+          }`}
         >
-          <StageCard stage={stage} align="left" />
+          <StageCard stage={stage} />
         </div>
       </div>
     </>
@@ -282,16 +314,23 @@ const Node = forwardRef<HTMLDivElement, { stage: Stage; isActive: boolean }>(
         ref={ref}
         aria-label={`Stage ${stage.number}`}
         className={`
-          flex items-center justify-center shrink-0
-          w-10 h-10 rounded-full border-2 font-mono text-xs font-bold select-none z-10
+          relative flex items-center justify-center shrink-0
+          w-10 h-10 rounded-full font-mono text-xs font-bold select-none z-10
           transition-all duration-500
           ${isActive
-            ? 'bg-accent border-accent text-white scale-110 shadow-lg shadow-accent/25'
-            : 'bg-background border-border text-muted-foreground scale-100'
+            ? 'bg-accent text-white scale-110 shadow-[0_0_0_6px_oklch(0.55_0.12_220_/_0.18)]'
+            : 'bg-primary text-primary-foreground/40 border border-accent/30 scale-100'
           }
         `}
       >
         {stage.number}
+        {/* Pulse ring when active */}
+        {isActive && (
+          <span
+            aria-hidden="true"
+            className="absolute inset-0 rounded-full animate-ping opacity-20 bg-accent"
+          />
+        )}
       </div>
     )
   }
@@ -299,39 +338,45 @@ const Node = forwardRef<HTMLDivElement, { stage: Stage; isActive: boolean }>(
 
 /* ─── Card ───────────────────────────────────────────────────────────── */
 
-function StageCard({ stage, align }: { stage: Stage; align: 'left' | 'right' }) {
+function StageCard({ stage }: { stage: Stage }) {
   return (
-    <article
-      className={`
-        w-full overflow-hidden
-        rounded-2xl border border-border bg-card
-        shadow-sm hover:shadow-md hover:border-accent/40
-        transition-shadow duration-300
-        ${align === 'right' ? 'ml-auto' : ''}
-      `}
-    >
-      {/* Image */}
+    <article className="group w-full overflow-hidden rounded-2xl">
+      {/* Full-bleed image with overlay text */}
       <div className="relative w-full aspect-[4/3] overflow-hidden">
         <Image
           src={stage.image}
           alt={stage.imageAlt}
           fill
-          className="object-cover transition-transform duration-500 hover:scale-105"
-          sizes="(max-width: 680px) 100vw, 320px"
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          sizes="(max-width: 680px) 100vw, 45vw"
         />
-      </div>
 
-      {/* Text */}
-      <div className={`px-6 py-5 ${align === 'right' ? 'text-right' : 'text-left'}`}>
-        <p className="text-xs font-mono font-semibold tracking-wider text-accent mb-2 uppercase">
-          {stage.number}
-        </p>
-        <h3 className="text-base font-semibold text-foreground mb-2 text-balance">
-          {stage.title}
-        </h3>
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          {stage.description}
-        </p>
+        {/* Dark gradient scrim — text lives here */}
+        <div
+          className="absolute inset-0 flex flex-col justify-end p-6 sm:p-7"
+          style={{
+            background:
+              'linear-gradient(to top, oklch(0.12 0.03 250 / 0.92) 0%, oklch(0.12 0.03 250 / 0.55) 45%, transparent 100%)',
+          }}
+        >
+          {/* Stage number — top-left corner badge */}
+          <span
+            className="absolute top-5 left-5 font-mono text-xs font-bold tracking-widest text-accent bg-primary/70 backdrop-blur-sm px-2.5 py-1 rounded-full border border-accent/30"
+          >
+            {stage.number}
+          </span>
+
+          {/* Title & description */}
+          <h3 className="font-serif text-xl sm:text-2xl font-semibold text-white leading-snug text-balance mb-2">
+            {stage.title}
+          </h3>
+          <p className="text-sm text-white/70 leading-relaxed line-clamp-3">
+            {stage.description}
+          </p>
+
+          {/* Accent underline that grows on hover */}
+          <div className="mt-4 h-px w-8 bg-accent transition-all duration-300 group-hover:w-16" aria-hidden="true" />
+        </div>
       </div>
     </article>
   )
