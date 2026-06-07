@@ -6,7 +6,7 @@ import {
   AboutPreviewSection,
   CTASection,
 } from '@/components/home-sections'
-import { ConceptAndProcessSection } from '@/components/concept-and-process'
+import { WorkingWithUsSection } from '@/components/working-with-us'
 
 export default function HomePage() {
   return (
@@ -15,7 +15,7 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <FeaturesSection />
-        <ConceptAndProcessSection />
+        <WorkingWithUsSection />
         <AboutPreviewSection />
         <CTASection />
       </main>

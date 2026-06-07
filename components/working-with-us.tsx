@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, forwardRef } from 'react'
 import Image from 'next/image'
+import { BeforeAfterSlider } from './before-after-slider'
 
 /* ─── Data ──────────────────────────────────────────────────────────── */
 
@@ -9,8 +10,14 @@ interface Stage {
   number: string
   title: string
   description: string
-  image: string
-  imageAlt: string
+  image?: string
+  imageAlt?: string
+  slider?: {
+    beforeImage: string
+    afterImage: string
+    beforeLabel: string
+    afterLabel: string
+  }
 }
 
 const STAGES: Stage[] = [
@@ -35,8 +42,12 @@ const STAGES: Stage[] = [
     title: 'Concept Drawing & Confirmation',
     description:
       "Our design team creates a bespoke proposal tailored to your requirements — typically within 7–10 days. This is your opportunity to give feedback. We fine-tune the concept until everything is just right, then provide a formal quote in TPU or PVC.",
-    image: '/images/wwu-03-proposal.png',
-    imageAlt: 'Two professionals reviewing a printed proposal document',
+    slider: {
+      beforeImage: '/images/slider-before.png',
+      afterImage: '/images/slider-after.png',
+      beforeLabel: 'Design',
+      afterLabel: 'Reality',
+    },
   },
   {
     number: '04',
@@ -361,15 +372,29 @@ function StageCard({ stage, isActive }: { stage: Stage; isActive: boolean }) {
         }}
       />
 
-      {/* Image */}
-      <div className="relative w-full aspect-[4/3] overflow-hidden">
-        <Image
-          src={stage.image}
-          alt={stage.imageAlt}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-          sizes="(max-width: 680px) 100vw, 45vw"
-        />
+      {/* Media: Image or Slider */}
+      <div className="relative w-full">
+        {stage.slider ? (
+          <div className="p-4 bg-muted/30">
+            <BeforeAfterSlider
+              beforeImage={stage.slider.beforeImage}
+              afterImage={stage.slider.afterImage}
+              beforeLabel={stage.slider.beforeLabel}
+              afterLabel={stage.slider.afterLabel}
+              alt={`${stage.title} comparison`}
+            />
+          </div>
+        ) : stage.image ? (
+          <div className="aspect-[4/3] overflow-hidden">
+            <Image
+              src={stage.image}
+              alt={stage.imageAlt || stage.title}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+              sizes="(max-width: 680px) 100vw, 45vw"
+            />
+          </div>
+        ) : null}
       </div>
 
       {/* Text */}
