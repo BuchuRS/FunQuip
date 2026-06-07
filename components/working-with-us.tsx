@@ -218,14 +218,14 @@ function TimelineRow({ stage, isLeft, isActive, prefersReduced, nodeRef }: RowPr
           {isLeft ? (
             <div
               className={`
-                w-full max-w-md transition-all duration-700 ease-out
+                w-full transition-all duration-700 ease-out
                 ${isActive ? 'opacity-100 translate-x-0' : hiddenLeft}
               `}
             >
               <StageCard stage={stage} align="right" />
             </div>
           ) : (
-            <div className="w-full max-w-md" aria-hidden="true" />
+            <div className="w-full" aria-hidden="true" />
           )}
         </div>
 
@@ -239,14 +239,14 @@ function TimelineRow({ stage, isLeft, isActive, prefersReduced, nodeRef }: RowPr
           {!isLeft ? (
             <div
               className={`
-                w-full max-w-md transition-all duration-700 ease-out
+                w-full transition-all duration-700 ease-out
                 ${isActive ? 'opacity-100 translate-x-0' : hiddenRight}
               `}
             >
               <StageCard stage={stage} align="left" />
             </div>
           ) : (
-            <div className="w-full max-w-md" aria-hidden="true" />
+            <div className="w-full" aria-hidden="true" />
           )}
         </div>
       </div>
@@ -303,7 +303,7 @@ function StageCard({ stage, align }: { stage: Stage; align: 'left' | 'right' }) 
   return (
     <article
       className={`
-        w-full max-w-md overflow-hidden
+        w-full overflow-hidden
         rounded-2xl border border-border bg-card
         shadow-sm hover:shadow-md hover:border-accent/40
         transition-shadow duration-300
