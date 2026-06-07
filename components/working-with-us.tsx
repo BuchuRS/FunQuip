@@ -18,6 +18,7 @@ interface Stage {
     beforeLabel: string
     afterLabel: string
   }
+  featured?: boolean
 }
 
 const STAGES: Stage[] = [
@@ -48,6 +49,7 @@ const STAGES: Stage[] = [
       beforeLabel: 'Design',
       afterLabel: 'Reality',
     },
+    featured: true,
   },
   {
     number: '04',
@@ -351,20 +353,24 @@ const Node = forwardRef<HTMLDivElement, { stage: Stage; isActive: boolean }>(
 /* ─── Card ───────────────────────────────────────────────────────────── */
 
 function StageCard({ stage, isActive }: { stage: Stage; isActive: boolean }) {
+  const isFeatured = stage.featured
+  
   return (
     <article
-      className="group w-full rounded-xl overflow-hidden transition-shadow duration-500 border border-border/60"
+      className={`group w-full rounded-xl overflow-hidden transition-shadow duration-500 border border-border/60 ${
+        isFeatured ? 'lg:col-span-2' : ''
+      }`}
       style={{
         background: 'var(--background)',
         boxShadow: isActive
-          ? '0 8px 32px oklch(0.22 0.02 240 / 0.12)'
+          ? '0 12px 40px oklch(0.22 0.02 240 / 0.16)'
           : '0 2px 12px oklch(0.22 0.02 240 / 0.06)',
       }}
     >
       {/* Top accent bar */}
       <div
         aria-hidden="true"
-        className="h-[3px] w-full transition-all duration-500"
+        className={`w-full transition-all duration-500 ${isFeatured ? 'h-1' : 'h-[3px]'}`}
         style={{
           background: isActive
             ? 'var(--color-ocean)'
@@ -375,7 +381,7 @@ function StageCard({ stage, isActive }: { stage: Stage; isActive: boolean }) {
       {/* Media: Image or Slider */}
       <div className="relative w-full">
         {stage.slider ? (
-          <div className="p-4 bg-muted/30">
+          <div className={`${isFeatured ? 'p-6' : 'p-4'} bg-muted/30`}>
             <BeforeAfterSlider
               beforeImage={stage.slider.beforeImage}
               afterImage={stage.slider.afterImage}
@@ -385,23 +391,25 @@ function StageCard({ stage, isActive }: { stage: Stage; isActive: boolean }) {
             />
           </div>
         ) : stage.image ? (
-          <div className="aspect-[4/3] overflow-hidden">
+          <div className={isFeatured ? 'aspect-video' : 'aspect-[4/3]'} style={{ overflow: 'hidden' }}>
             <Image
               src={stage.image}
               alt={stage.imageAlt || stage.title}
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-              sizes="(max-width: 680px) 100vw, 45vw"
+              sizes={isFeatured ? '(max-width: 680px) 100vw, 90vw' : '(max-width: 680px) 100vw, 45vw'}
             />
           </div>
         ) : null}
       </div>
 
       {/* Text */}
-      <div className="px-6 py-5">
+      <div className={isFeatured ? 'px-8 py-6' : 'px-6 py-5'}>
         <div className="flex items-center gap-3 mb-3">
           <span
-            className="font-sans text-xs font-bold tracking-widest px-2.5 py-1 rounded-full"
+            className={`font-sans font-bold tracking-widest px-2.5 py-1 rounded-full ${
+              isFeatured ? 'text-sm' : 'text-xs'
+            }`}
             style={{
               background: 'color-mix(in oklch, var(--color-ocean) 10%, transparent)',
               color: 'var(--color-ocean)',
@@ -411,10 +419,14 @@ function StageCard({ stage, isActive }: { stage: Stage; isActive: boolean }) {
           </span>
           <div aria-hidden="true" className="flex-1 h-px bg-border" />
         </div>
-        <h3 className="font-sans text-xl sm:text-2xl font-semibold leading-snug text-balance mb-2 text-foreground">
+        <h3 className={`font-sans font-semibold leading-snug text-balance mb-2 text-foreground ${
+          isFeatured ? 'text-3xl sm:text-4xl' : 'text-xl sm:text-2xl'
+        }`}>
           {stage.title}
         </h3>
-        <p className="text-sm leading-relaxed text-muted-foreground">
+        <p className={`leading-relaxed text-muted-foreground ${
+          isFeatured ? 'text-base' : 'text-sm'
+        }`}>
           {stage.description}
         </p>
       </div>
