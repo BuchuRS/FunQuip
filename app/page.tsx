@@ -7,6 +7,7 @@ import {
   CTASection,
 } from '@/components/home-sections'
 import { BeforeAfterSlider } from '@/components/before-after-slider'
+import { WorkingWithUsSection } from '@/components/working-with-us'
 
 export default function HomePage() {
   return (
@@ -21,10 +22,10 @@ export default function HomePage() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mb-12">
               <p className="text-sm font-medium uppercase tracking-widest text-accent mb-2">
-                Our Products
+                Design vs Reality
               </p>
               <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                Featured Solutions
+                From concept drawing to water
               </h2>
             </div>
 
@@ -38,6 +39,7 @@ export default function HomePage() {
           </div>
         </section>
 
+        <WorkingWithUsSection />
         <AboutPreviewSection />
         <CTASection />
       </main>
