@@ -152,7 +152,7 @@ export function WorkingWithUsSection() {
           </p>
           <h2
             id="wwu-heading"
-            className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-balance leading-[1.1] text-foreground"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-balance leading-[1.1] text-foreground"
           >
             Working With Us
           </h2>
@@ -386,7 +386,7 @@ function StageCard({ stage, isActive }: { stage: Stage; isActive: boolean }) {
           </span>
           <div aria-hidden="true" className="flex-1 h-px bg-border" />
         </div>
-        <h3 className="font-serif text-xl sm:text-2xl font-semibold leading-snug text-balance mb-2 text-foreground">
+        <h3 className="text-xl sm:text-2xl font-semibold leading-snug text-balance mb-2 text-foreground">
           {stage.title}
         </h3>
         <p className="text-sm leading-relaxed text-muted-foreground">
