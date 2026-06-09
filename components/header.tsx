@@ -77,9 +77,9 @@ export function Header() {
           {/* Center Logo */}
           <Link href="/" className="absolute left-1/2 -translate-x-1/2">
             <img
-              src="/funquip-logo.png"
-              alt="FunQuip Logo"
-              className="h-12 w-auto"
+              src="/images/xflatable-logo.png"
+              alt="Xflatable Logo"
+              className="h-6 w-auto"
             />
           </Link>
 
@@ -96,9 +96,9 @@ export function Header() {
         <div className="lg:hidden flex items-center justify-between bg-white/50 backdrop-blur-md rounded-full px-4 py-3 shadow-lg">
           <Link href="/" className="h-10 flex items-center">
             <img
-              src="/funquip-logo.png"
-              alt="FunQuip Logo"
-              className="h-10 w-auto"
+              src="/images/xflatable-logo.png"
+              alt="Xflatable Logo"
+              className="h-6 w-auto"
             />
           </Link>
           <button
@@ -127,9 +127,9 @@ export function Header() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <img
-                  src="/funquip-logo.png"
-                  alt="FunQuip Logo"
-                  className="h-10 w-auto"
+                  src="/images/xflatable-logo.png"
+                  alt="Xflatable Logo"
+                  className="h-6 w-auto"
                 />
               </Link>
               <button
