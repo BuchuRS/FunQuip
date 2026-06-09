@@ -79,7 +79,7 @@ export function Header() {
             <img
               src="/images/xflatable-logo.png"
               alt="Xflatable Logo"
-              className="h-8 w-auto"
+              className="h-6 w-auto"
             />
           </Link>
 
