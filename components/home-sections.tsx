@@ -103,15 +103,15 @@ export function FeaturesSection() {
         {/* Header section */}
         <div className="text-center mb-12 md:mb-16">
           <p className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
-            Modular Platform Collection
+            Built for the Water
           </p>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-6">
-            Explore Your
+            Inflate. Deploy.
             <br />
-            <span className="text-accent">Floating Lifestyle</span>
+            <span className="text-accent">Own the Water.</span>
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Discover premium floating environments designed for unforgettable moments on the water — from elegant yacht platforms and docking systems to shaded pavilion lounges and luxury floating pools.
+            From superyacht platforms to floating water parks — our inflatable systems set up in minutes and transform any anchorage into your private aquatic destination.
           </p>
         </div>
 
