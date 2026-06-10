@@ -91,9 +91,9 @@ export function FeaturesSection() {
     },
     {
       name: 'CREW',
-      description: 'Premium custom Yacht slides.',
-      image: '/images/product-modular.png',
-      href: '/products?category=slides',
+      description: 'Floating work platforms for professional yacht crew maintenance.',
+      image: '/images/crew-maintenance.png',
+      href: '/products?category=crew',
     },
   ]
 
