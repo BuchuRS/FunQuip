@@ -79,19 +79,19 @@ export function FeaturesSection() {
     },
     {
       name: 'POOLS',
-      description: 'Inflatable sea pools that enclose a private swimming area directly off your yacht.',
+      description: 'Private inflatable sea pools off your yacht.',
       image: '/images/product-seapool.png',
       href: '/products?category=sea-pools',
     },
     {
       name: 'FURNITURES',
-      description: 'Premium inflatable furniture and loungers designed for life on and around the water.',
+      description: 'Premium inflatable loungers for life on the water.',
       image: '/images/category-accessories.png',
       href: '/products?category=furniture',
     },
     {
       name: 'CREW',
-      description: 'Floating work platforms that give your crew safe, stable access for hull maintenance.',
+      description: 'Stable floating platforms for hull maintenance.',
       image: '/images/crew-maintenance.png',
       href: '/products?category=crew',
     },
