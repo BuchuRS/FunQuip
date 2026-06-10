@@ -115,13 +115,13 @@ export function FeaturesSection() {
         </div>
 
         {/* Masonry-style grid layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 auto-rows-max">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-6 auto-rows-max">
           {/* Large card - left, spans 2 rows */}
           <Link
             href={categories[0].href}
             className="group md:col-span-2 md:row-span-2 block"
           >
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden h-full">
+            <div className="relative aspect-[8/10] md:aspect-[12/14] rounded-3xl overflow-hidden h-full">
               <Image
                 src={categories[0].image}
                 alt={categories[0].name}
@@ -147,7 +147,7 @@ export function FeaturesSection() {
             href={categories[1].href}
             className="group block"
           >
-            <div className="relative aspect-[3/2.5] rounded-3xl overflow-hidden">
+            <div className="relative aspect-[5/4] md:aspect-[6/5] rounded-3xl overflow-hidden">
               <Image
                 src={categories[1].image}
                 alt={categories[1].name}
@@ -171,7 +171,7 @@ export function FeaturesSection() {
             href={categories[2].href}
             className="group block"
           >
-            <div className="relative aspect-[3/2.5] rounded-3xl overflow-hidden">
+            <div className="relative aspect-[5/4] md:aspect-[6/5] rounded-3xl overflow-hidden">
               <Image
                 src={categories[2].image}
                 alt={categories[2].name}
