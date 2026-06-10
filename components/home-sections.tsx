@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, ArrowDown } from 'lucide-react'
 
+
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-neutral-950">
@@ -114,116 +115,93 @@ export function FeaturesSection() {
           </p>
         </div>
 
-        {/* Masonry-style grid layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-6 auto-rows-max">
+        {/* Grid layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-max">
+
           {/* Left card — Platforms & Docks */}
-          <div className="group relative aspect-[4/3] rounded-3xl overflow-hidden">
+          <Link href={categories[0].href} className="group relative aspect-[4/3] rounded-2xl overflow-hidden block">
             <Image
               src={categories[0].image}
               alt="Platforms and Docks"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-              <div className="flex flex-wrap gap-3 mb-3">
-                {categories.slice(0, 2).map((cat) => (
-                  <Link
-                    key={cat.name}
-                    href={cat.href}
-                    className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/15 border border-white/30 text-white text-sm font-semibold backdrop-blur-sm hover:bg-white/25 transition-colors"
-                  >
-                    {cat.name}
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
-                ))}
-              </div>
-              <p className="text-white/75 text-sm md:text-base max-w-lg">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                PLATFORMS & DOCKS
+              </h3>
+              <p className="text-white/75 text-sm leading-relaxed max-w-sm">
                 {categories[0].description}
               </p>
             </div>
-          </div>
+          </Link>
 
           {/* Right card — HEX */}
-          <div className="group relative aspect-[4/3] rounded-3xl overflow-hidden">
+          <Link href={categories[2].href} className="group relative aspect-[4/3] rounded-2xl overflow-hidden block">
             <Image
               src={categories[2].image}
               alt="HEX"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-              <div className="flex flex-wrap gap-3 mb-3">
-                <Link
-                  href={categories[2].href}
-                  className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/15 border border-white/30 text-white text-sm font-semibold backdrop-blur-sm hover:bg-white/25 transition-colors"
-                >
-                  {categories[2].name}
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
-              </div>
-              <p className="text-white/75 text-sm md:text-base">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                {categories[2].name}
+              </h3>
+              <p className="text-white/75 text-sm leading-relaxed">
                 {categories[2].description}
               </p>
             </div>
-          </div>
+          </Link>
 
-          {/* Full width card - spanning 2 columns */}
-          <Link
-            href={categories[3].href}
-            className="group md:col-span-2 block"
-          >
-            <div className="relative aspect-[16/5] md:aspect-[16/6] rounded-3xl overflow-hidden">
-              <Image
-                src={categories[3].image}
-                alt={categories[3].name}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-              <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-10">
-                <p className="text-xs font-semibold uppercase tracking-widest text-white/70 mb-2">
-                  Signature Lifestyle
-                </p>
-                <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                  {categories[3].name}
-                </h3>
-                <p className="text-white/90 text-sm md:text-base max-w-2xl">
-                  {categories[3].description}
-                </p>
-              </div>
+          {/* Full-width card — Floating Pavilions */}
+          <Link href={categories[3].href} className="group md:col-span-2 relative aspect-[16/6] rounded-2xl overflow-hidden block">
+            <Image
+              src={categories[3].image}
+              alt={categories[3].name}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                {categories[3].name}
+              </h3>
+              <p className="text-white/75 text-sm leading-relaxed max-w-2xl">
+                {categories[3].description}
+              </p>
             </div>
           </Link>
 
-          {/* Bottom row - 3 equal small cards spanning full width */}
-          <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {/* Bottom row — 3 equal cards */}
+          <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
             {categories.slice(4, 7).map((category) => (
               <Link
                 key={category.name}
                 href={category.href}
-                className="group block"
+                className="group relative aspect-[4/3] rounded-2xl overflow-hidden block"
               >
-                <div className="relative aspect-[3/2.5] rounded-3xl overflow-hidden">
-                  <Image
-                    src={category.image}
-                    alt={category.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-                  <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6">
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
-                      {category.name}
-                    </h3>
-                    <p className="text-white/90 text-xs md:text-sm">
-                      {category.description}
-                    </p>
-                  </div>
+                <Image
+                  src={category.image}
+                  alt={category.name}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                    {category.name}
+                  </h3>
+                  <p className="text-white/75 text-sm leading-relaxed">
+                    {category.description}
+                  </p>
                 </div>
               </Link>
             ))}
           </div>
+
         </div>
       </div>
     </section>
