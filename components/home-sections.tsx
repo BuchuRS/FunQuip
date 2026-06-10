@@ -90,7 +90,7 @@ export function FeaturesSection() {
       href: '/products?category=furniture',
     },
     {
-      name: 'YACHT SLIDES',
+      name: 'CREW',
       description: 'Premium custom Yacht slides.',
       image: '/images/product-modular.png',
       href: '/products?category=slides',
