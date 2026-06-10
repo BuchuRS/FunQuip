@@ -116,79 +116,34 @@ export function FeaturesSection() {
 
         {/* Masonry-style grid layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-6 auto-rows-max">
-          {/* Large card - left, spans 2 rows */}
-          <Link
-            href={categories[0].href}
-            className="group md:col-span-2 md:row-span-2 block"
-          >
-            <div className="relative aspect-[8/10] md:aspect-[12/14] rounded-3xl overflow-hidden h-full">
-              <Image
-                src={categories[0].image}
-                alt={categories[0].name}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-              {/* Content */}
-              <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-                <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                  {categories[0].name}
-                </h3>
-                <p className="text-white/90 text-sm md:text-base">
-                  {categories[0].description}
-                </p>
+          {/* Full-width combined card — Platforms, Docks, HEX */}
+          <div className="group md:col-span-3 relative aspect-[16/7] rounded-3xl overflow-hidden">
+            <Image
+              src={categories[0].image}
+              alt="Platforms, Docks and HEX"
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent" />
+            <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-10">
+              {/* Category chips */}
+              <div className="flex flex-wrap gap-3 mb-4">
+                {categories.slice(0, 3).map((cat) => (
+                  <Link
+                    key={cat.name}
+                    href={cat.href}
+                    className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/15 border border-white/30 text-white text-sm font-semibold backdrop-blur-sm hover:bg-white/25 transition-colors"
+                  >
+                    {cat.name}
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                ))}
               </div>
+              <p className="text-white/80 text-sm md:text-base max-w-xl">
+                {categories[0].description}
+              </p>
             </div>
-          </Link>
-
-          {/* Medium card - top right */}
-          <Link
-            href={categories[1].href}
-            className="group block"
-          >
-            <div className="relative aspect-[5/4] md:aspect-[6/5] rounded-3xl overflow-hidden">
-              <Image
-                src={categories[1].image}
-                alt={categories[1].name}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-              <div className="absolute inset-0 flex flex-col justify-end p-6">
-                <h3 className="text-2xl font-bold text-white mb-1">
-                  {categories[1].name}
-                </h3>
-                <p className="text-white/90 text-xs md:text-sm">
-                  {categories[1].description}
-                </p>
-              </div>
-            </div>
-          </Link>
-
-          {/* Medium card - bottom right */}
-          <Link
-            href={categories[2].href}
-            className="group block"
-          >
-            <div className="relative aspect-[5/4] md:aspect-[6/5] rounded-3xl overflow-hidden">
-              <Image
-                src={categories[2].image}
-                alt={categories[2].name}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-              <div className="absolute inset-0 flex flex-col justify-end p-6">
-                <h3 className="text-2xl font-bold text-white mb-1">
-                  {categories[2].name}
-                </h3>
-                <p className="text-white/90 text-xs md:text-sm">
-                  {categories[2].description}
-                </p>
-              </div>
-            </div>
-          </Link>
+          </div>
 
           {/* Full width card - spanning 3 columns */}
           <Link
