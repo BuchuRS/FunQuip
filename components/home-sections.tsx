@@ -74,13 +74,13 @@ export function FeaturesSection() {
     {
       name: 'Water Parks',
       description: 'Elegant shaded floating lounge spaces bringing luxury hospitality directly onto the water.',
-      image: '/images/product-seapool.png',
+      image: '/images/category-seapools.png',
       href: '/products?category=pavilions',
     },
     {
       name: 'POOLS',
       description: 'Dedicated floating swimming environments.',
-      image: '/images/category-seapools.png',
+      image: '/images/product-seapool.png',
       href: '/products?category=sea-pools',
     },
     {
