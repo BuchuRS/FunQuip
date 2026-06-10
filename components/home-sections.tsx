@@ -68,7 +68,7 @@ export function FeaturesSection() {
     {
       name: 'HEX',
       description: 'Creative modular floating layouts.',
-      image: '/images/hex-platforms.png',
+      image: '/images/hex-platforms-2.png',
       href: '/products?category=platforms',
     },
     {
