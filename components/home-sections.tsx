@@ -157,14 +157,20 @@ export function FeaturesSection() {
           </Link>
 
           {/* Full-width card — Floating Pavilions */}
-          <Link href={categories[3].href} className="group md:col-span-2 relative aspect-[16/6] rounded-2xl overflow-hidden block">
+          <div className="group md:col-span-2 relative aspect-[16/6] rounded-2xl overflow-hidden block cursor-not-allowed opacity-75">
             <Image
               src={categories[3].image}
               alt={categories[3].name}
               fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              className="object-cover transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            {/* Coming Soon Badge */}
+            <div className="absolute top-6 right-6 z-10">
+              <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/20 border border-white/40 backdrop-blur-sm">
+                <span className="text-white text-sm font-semibold">Coming Soon</span>
+              </div>
+            </div>
             <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
                 {categories[3].name}
@@ -173,7 +179,7 @@ export function FeaturesSection() {
                 {categories[3].description}
               </p>
             </div>
-          </Link>
+          </div>
 
           {/* Bottom row — 3 equal cards */}
           <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
