@@ -55,19 +55,19 @@ export function FeaturesSection() {
   const categories = [
     {
       name: 'PLATFORMS',
-      description: 'Inflatable floating platforms that extend your yacht into a private beach on the water.',
+      description: 'Extend your yacht into a private floating beach.',
       image: '/images/Platformdock.png',
       href: '/products?category=docking',
     },
     {
       name: 'DOCKS',
-      description: 'Modular inflatable docking systems that keep your tenders and toys secure alongside.',
+      description: 'Modular docking systems for tenders and water toys.',
       image: '/images/category-docking.png',
       href: '/products?category=docking',
     },
     {
       name: 'HEX',
-      description: 'Hexagonal floating modules that connect and reconfigure to create your ideal layout.',
+      description: 'Hexagonal modules that connect into your ideal layout.',
       image: '/images/hex-platforms-2.png',
       href: '/products?category=platforms',
     },
