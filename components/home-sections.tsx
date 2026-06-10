@@ -128,7 +128,7 @@ export function FeaturesSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              <h3 className="text-3xl md:text-5xl font-bold text-white mb-2">
                 PLATFORMS & DOCKS
               </h3>
               <p className="text-white/75 text-sm leading-relaxed max-w-sm">
@@ -147,7 +147,7 @@ export function FeaturesSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              <h3 className="text-3xl md:text-5xl font-bold text-white mb-2">
                 {categories[2].name}
               </h3>
               <p className="text-white/75 text-sm leading-relaxed">
@@ -172,7 +172,7 @@ export function FeaturesSection() {
               </div>
             </div>
             <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              <h3 className="text-3xl md:text-5xl font-bold text-white mb-2">
                 {categories[3].name}
               </h3>
               <p className="text-white/75 text-sm leading-relaxed max-w-2xl">
@@ -197,7 +197,7 @@ export function FeaturesSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                  <h3 className="text-3xl md:text-5xl font-bold text-white mb-2">
                     {category.name}
                   </h3>
                   <p className="text-white/75 text-sm leading-relaxed">
