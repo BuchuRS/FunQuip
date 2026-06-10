@@ -72,7 +72,7 @@ export function FeaturesSection() {
       href: '/products?category=platforms',
     },
     {
-      name: 'FLOATING PAVILIONS',
+      name: 'Water Parks',
       description: 'Elegant shaded floating lounge spaces bringing luxury hospitality directly onto the water.',
       image: '/images/product-seapool.webp',
       href: '/products?category=pavilions',
