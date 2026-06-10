@@ -55,43 +55,43 @@ export function FeaturesSection() {
   const categories = [
     {
       name: 'PLATFORMS',
-      description: 'Extend your yacht with spacious floating designed for relaxation.',
+      description: 'Extend your yacht into a private floating beach.',
       image: '/images/Platformdock.png',
       href: '/products?category=docking',
     },
     {
       name: 'DOCKS',
-      description: 'Modern docking solutions for water experience.',
+      description: 'Modular docking systems for tenders and water toys.',
       image: '/images/category-docking.png',
       href: '/products?category=docking',
     },
     {
       name: 'HEX',
-      description: 'Creative modular floating layouts.',
+      description: 'Hexagonal modules that connect into your ideal layout.',
       image: '/images/hex-platforms-2.png',
       href: '/products?category=platforms',
     },
     {
       name: 'Water Parks',
-      description: 'Elegant shaded floating lounge spaces bringing luxury hospitality directly onto the water.',
+      description: 'Fully modular floating water parks with swim enclosures, slides, and shaded lounges.',
       image: '/images/waterpark-xflatable.png',
       href: '/products?category=pavilions',
     },
     {
       name: 'POOLS',
-      description: 'Dedicated floating swimming environments.',
+      description: 'Private inflatable sea pools off your yacht.',
       image: '/images/product-seapool.png',
       href: '/products?category=sea-pools',
     },
     {
       name: 'FURNITURES',
-      description: 'Elegant comfort for yacht & waterside.',
+      description: 'Premium inflatable loungers for life on the water.',
       image: '/images/category-accessories.png',
       href: '/products?category=furniture',
     },
     {
       name: 'CREW',
-      description: 'Floating work platforms for professional yacht crew maintenance.',
+      description: 'Stable floating platforms for hull maintenance.',
       image: '/images/crew-maintenance.png',
       href: '/products?category=crew',
     },
@@ -103,15 +103,15 @@ export function FeaturesSection() {
         {/* Header section */}
         <div className="text-center mb-12 md:mb-16">
           <p className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
-            Modular Platform Collection
+            Built for the Water
           </p>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-6">
-            Explore Your
+            Inflate. Deploy.
             <br />
-            <span className="text-accent">Floating Lifestyle</span>
+            <span className="text-accent">Own the Water.</span>
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Discover premium floating environments designed for unforgettable moments on the water — from elegant yacht platforms and docking systems to shaded pavilion lounges and luxury floating pools.
+            From superyacht platforms to floating water parks — our inflatable systems set up in minutes and transform any anchorage into your private aquatic destination.
           </p>
         </div>
 
@@ -128,7 +128,7 @@ export function FeaturesSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              <h3 className="text-3xl md:text-5xl font-bold text-white mb-2">
                 PLATFORMS & DOCKS
               </h3>
               <p className="text-white/75 text-sm leading-relaxed max-w-sm">
@@ -147,7 +147,7 @@ export function FeaturesSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              <h3 className="text-3xl md:text-5xl font-bold text-white mb-2">
                 {categories[2].name}
               </h3>
               <p className="text-white/75 text-sm leading-relaxed">
@@ -172,7 +172,7 @@ export function FeaturesSection() {
               </div>
             </div>
             <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              <h3 className="text-3xl md:text-5xl font-bold text-white mb-2">
                 {categories[3].name}
               </h3>
               <p className="text-white/75 text-sm leading-relaxed max-w-2xl">
@@ -197,7 +197,7 @@ export function FeaturesSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                  <h3 className="text-3xl md:text-5xl font-bold text-white mb-2">
                     {category.name}
                   </h3>
                   <p className="text-white/75 text-sm leading-relaxed">
