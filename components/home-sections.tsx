@@ -115,9 +115,9 @@ export function FeaturesSection() {
         </div>
 
         {/* Masonry-style grid layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-6 auto-rows-max">
-          {/* Left card — Platforms & Docks, spans 2 columns */}
-          <div className="group md:col-span-2 relative aspect-[4/3] rounded-3xl overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-6 auto-rows-max">
+          {/* Left card — Platforms & Docks */}
+          <div className="group relative aspect-[4/3] rounded-3xl overflow-hidden">
             <Image
               src={categories[0].image}
               alt="Platforms and Docks"
@@ -144,8 +144,8 @@ export function FeaturesSection() {
             </div>
           </div>
 
-          {/* Right card — HEX, spans 1 column */}
-          <div className="group md:col-span-1 relative aspect-[4/3] rounded-3xl overflow-hidden">
+          {/* Right card — HEX */}
+          <div className="group relative aspect-[4/3] rounded-3xl overflow-hidden">
             <Image
               src={categories[2].image}
               alt="HEX"
@@ -169,10 +169,10 @@ export function FeaturesSection() {
             </div>
           </div>
 
-          {/* Full width card - spanning 3 columns */}
+          {/* Full width card - spanning 2 columns */}
           <Link
             href={categories[3].href}
-            className="group md:col-span-3 block"
+            className="group md:col-span-2 block"
           >
             <div className="relative aspect-[16/5] md:aspect-[16/6] rounded-3xl overflow-hidden">
               <Image
@@ -196,32 +196,34 @@ export function FeaturesSection() {
             </div>
           </Link>
 
-          {/* Bottom row - 3 equal small cards */}
-          {categories.slice(4, 7).map((category) => (
-            <Link
-              key={category.name}
-              href={category.href}
-              className="group block"
-            >
-              <div className="relative aspect-[3/2.5] rounded-3xl overflow-hidden">
-                <Image
-                  src={category.image}
-                  alt={category.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6">
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
-                    {category.name}
-                  </h3>
-                  <p className="text-white/90 text-xs md:text-sm">
-                    {category.description}
-                  </p>
+          {/* Bottom row - 3 equal small cards spanning full width */}
+          <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {categories.slice(4, 7).map((category) => (
+              <Link
+                key={category.name}
+                href={category.href}
+                className="group block"
+              >
+                <div className="relative aspect-[3/2.5] rounded-3xl overflow-hidden">
+                  <Image
+                    src={category.image}
+                    alt={category.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                  <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6">
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
+                      {category.name}
+                    </h3>
+                    <p className="text-white/90 text-xs md:text-sm">
+                      {category.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </section>
