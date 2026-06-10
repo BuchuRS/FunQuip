@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, ArrowDown } from 'lucide-react'
 
+
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-neutral-950">
@@ -53,111 +54,160 @@ export function HeroSection() {
 export function FeaturesSection() {
   const categories = [
     {
-      name: 'Floating Docks and Platforms',
+      name: 'PLATFORMS',
+      description: 'Extend your yacht with spacious floating designed for relaxation.',
       image: '/images/Platformdock.png',
       href: '/products?category=docking',
     },
     {
-      name: 'Sea Pools',
-      image: '/images/product-seapool.webp',
+      name: 'DOCKS',
+      description: 'Modern docking solutions for water experience.',
+      image: '/images/category-docking.png',
+      href: '/products?category=docking',
+    },
+    {
+      name: 'HEX',
+      description: 'Creative modular floating layouts.',
+      image: '/images/hex-platforms-2.png',
       href: '/products?category=platforms',
     },
     {
-      name: 'Inflatable Toys',
-      image: '/images/category-seapools.png',
+      name: 'Water Parks',
+      description: 'Elegant shaded floating lounge spaces bringing luxury hospitality directly onto the water.',
+      image: '/images/waterpark-xflatable.png',
+      href: '/products?category=pavilions',
+    },
+    {
+      name: 'POOLS',
+      description: 'Dedicated floating swimming environments.',
+      image: '/images/product-seapool.png',
       href: '/products?category=sea-pools',
     },
     {
-      name: 'Furniture',
+      name: 'FURNITURES',
+      description: 'Elegant comfort for yacht & waterside.',
       image: '/images/category-accessories.png',
-      href: '/products?category=professional',
+      href: '/products?category=furniture',
+    },
+    {
+      name: 'CREW',
+      description: 'Floating work platforms for professional yacht crew maintenance.',
+      image: '/images/crew-maintenance.png',
+      href: '/products?category=crew',
     },
   ]
 
   return (
-    <section className="py-20 md:py-28 bg-white">
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        {/* Elegant heading with strong hierarchy */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-12 md:mb-16">
-          Modular platforms<br />
-          <span className="text-accent">for every application</span>
-        </h2>
+    <section className="py-20 md:py-28 bg-background">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Header section */}
+        <div className="text-center mb-12 md:mb-16">
+          <p className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
+            Modular Platform Collection
+          </p>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-6">
+            Explore Your
+            <br />
+            <span className="text-accent">Floating Lifestyle</span>
+          </h2>
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Discover premium floating environments designed for unforgettable moments on the water — from elegant yacht platforms and docking systems to shaded pavilion lounges and luxury floating pools.
+          </p>
+        </div>
 
-        {/* Asymmetric category grid - matching reference layout */}
-        <div className="flex flex-col gap-10 md:gap-14">
-          {/* Top row - two equal columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-            {categories.slice(0, 2).map((category) => (
+        {/* Grid layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-max">
+
+          {/* Left card — Platforms & Docks */}
+          <Link href={categories[0].href} className="group relative aspect-[4/3] rounded-2xl overflow-hidden block">
+            <Image
+              src={categories[0].image}
+              alt="Platforms and Docks"
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                PLATFORMS & DOCKS
+              </h3>
+              <p className="text-white/75 text-sm leading-relaxed max-w-sm">
+                {categories[0].description}
+              </p>
+            </div>
+          </Link>
+
+          {/* Right card — HEX */}
+          <Link href={categories[2].href} className="group relative aspect-[4/3] rounded-2xl overflow-hidden block">
+            <Image
+              src={categories[2].image}
+              alt="HEX"
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                {categories[2].name}
+              </h3>
+              <p className="text-white/75 text-sm leading-relaxed">
+                {categories[2].description}
+              </p>
+            </div>
+          </Link>
+
+          {/* Full-width card — Floating Pavilions */}
+          <div className="group md:col-span-2 relative aspect-[16/6] rounded-2xl overflow-hidden block cursor-not-allowed opacity-75">
+            <Image
+              src={categories[3].image}
+              alt={categories[3].name}
+              fill
+              className="object-cover transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            {/* Coming Soon Badge */}
+            <div className="absolute top-6 right-6 z-10">
+              <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/20 border border-white/40 backdrop-blur-sm">
+                <span className="text-white text-sm font-semibold">Coming Soon</span>
+              </div>
+            </div>
+            <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                {categories[3].name}
+              </h3>
+              <p className="text-white/75 text-sm leading-relaxed max-w-2xl">
+                {categories[3].description}
+              </p>
+            </div>
+          </div>
+
+          {/* Bottom row — 3 equal cards */}
+          <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {categories.slice(4, 7).map((category) => (
               <Link
                 key={category.name}
                 href={category.href}
-                className="group block"
+                className="group relative aspect-[4/3] rounded-2xl overflow-hidden block"
               >
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4">
-                  <Image
-                    src={category.image}
-                    alt={category.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                <Image
+                  src={category.image}
+                  alt={category.name}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                    {category.name}
+                  </h3>
+                  <p className="text-white/75 text-sm leading-relaxed">
+                    {category.description}
+                  </p>
                 </div>
-                <h3 className="text-lg md:text-xl font-normal text-neutral-800 mb-1">
-                  {category.name}
-                </h3>
-                <span className="inline-flex items-center text-sm text-neutral-500 group-hover:text-neutral-800 transition-colors">
-                  view
-                  <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </span>
               </Link>
             ))}
           </div>
-          
-          {/* Bottom row - symmetric: two equal columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-            {/* Left card */}
-            <Link
-              href={categories[2].href}
-              className="group block"
-            >
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4">
-                <Image
-                  src={categories[2].image}
-                  alt={categories[2].name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <h3 className="text-lg md:text-xl font-normal text-neutral-800 mb-1">
-                {categories[2].name}
-              </h3>
-              <span className="inline-flex items-center text-sm text-neutral-500 group-hover:text-neutral-800 transition-colors">
-                view
-                <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </span>
-            </Link>
-            
-            {/* Right card */}
-            <Link
-              href={categories[3].href}
-              className="group block"
-            >
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4">
-                <Image
-                  src={categories[3].image}
-                  alt={categories[3].name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <h3 className="text-lg md:text-xl font-normal text-neutral-800 mb-1">
-                {categories[3].name}
-              </h3>
-              <span className="inline-flex items-center text-sm text-neutral-500 group-hover:text-neutral-800 transition-colors">
-                view
-                <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </span>
-            </Link>
-          </div>
+
         </div>
       </div>
     </section>
