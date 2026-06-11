@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, forwardRef } from 'react'
 import Image from 'next/image'
+import { BeforeAfterSlider } from '@/components/before-after-slider'
 
 /* ─── Data ──────────────────────────────────────────────────────────── */
 
@@ -11,6 +12,13 @@ interface Stage {
   description: string
   image: string
   imageAlt: string
+  slider?: {
+    beforeImage: string
+    afterImage: string
+    beforeLabel: string
+    afterLabel: string
+    alt: string
+  }
 }
 
 const STAGES: Stage[] = [
@@ -29,6 +37,13 @@ const STAGES: Stage[] = [
       'We develop your wishlist into a detailed design brief using your General Arrangement. We explore position, pool depth, walkway widths, toy capacity, and any bespoke requirements — our designs are entirely custom.',
     image: '/images/wwu-02-design.png',
     imageAlt: "CAD drawings and colour samples on a marine engineer's desk",
+    slider: {
+      beforeImage: '/images/slider-before.png',
+      afterImage: '/images/slider-after.png',
+      beforeLabel: 'Design',
+      afterLabel: 'Reality',
+      alt: 'FunQuip Platform — Design vs Reality',
+    },
   },
   {
     number: '03',
@@ -345,16 +360,29 @@ function StageCard({ stage, isActive }: { stage: Stage; isActive: boolean }) {
         }}
       />
 
-      {/* Image */}
-      <div className="relative w-full aspect-[4/3] overflow-hidden">
-        <Image
-          src={stage.image}
-          alt={stage.imageAlt}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-          sizes="(max-width: 680px) 100vw, 45vw"
-        />
-      </div>
+      {/* Image / Interactive slider */}
+      {stage.slider ? (
+        <div className="relative w-full">
+          <BeforeAfterSlider
+            beforeImage={stage.slider.beforeImage}
+            afterImage={stage.slider.afterImage}
+            beforeLabel={stage.slider.beforeLabel}
+            afterLabel={stage.slider.afterLabel}
+            alt={stage.slider.alt}
+            rounded={false}
+          />
+        </div>
+      ) : (
+        <div className="relative w-full aspect-[4/3] overflow-hidden">
+          <Image
+            src={stage.image}
+            alt={stage.imageAlt}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+            sizes="(max-width: 680px) 100vw, 45vw"
+          />
+        </div>
+      )}
 
       {/* Text */}
       <div className="px-6 py-5">
