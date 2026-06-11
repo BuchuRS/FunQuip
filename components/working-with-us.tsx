@@ -58,8 +58,8 @@ const STAGES: Stage[] = [
     title: 'Delivery',
     description:
       'Your finished platform arrives ready to use. We handle logistics and ensure everything is installed and working beautifully on your yacht.',
-    image: '/images/wwu-04-manufacture.png',
-    imageAlt: 'Craftsperson heat-welding TPU fabric in a marine workshop',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Remake%20this%20picture%2C%20change%20logo%20on%20the%20bag%20to%20the%20%402%20logo%20with%20a%20realistic%20texture%20that%20conforms%20to%20the%20bag%27s%20shape%2C%20and%20slightly%20change%20the%20camera%20angle%20to%20a%20more%20dynamic%20three-quarter%20view%2C%20remove%20the%20_Comfort%20tr-zS44CJ6NPWwsv1vVtxokzeg7kSmdJh.png',
+    imageAlt: 'FunQuip delivery bag on a tropical beach',
   },
 ]
 
