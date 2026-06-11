@@ -43,8 +43,8 @@ const STAGES: Stage[] = [
     title: 'Manufacture',
     description:
       'Once approved, we issue an invoice — 50% secures your production slot, 50% before dispatch. Our TPU platforms are produced in Europe; our PVC range in China. Both facilities uphold strong ethical labour and quality standards.',
-    image: '/images/wwu-04-manufacture.png',
-    imageAlt: 'Craftsperson heat-welding TPU fabric in a marine workshop',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Factory-LpjjHDMVCwlZwjz6bgvvlsv60r3Phf.png',
+    imageAlt: 'Technician heat-welding TPU fabric in a manufacturing facility',
   },
 ]
 
