@@ -35,16 +35,16 @@ const STAGES: Stage[] = [
     title: 'Proposal & Approval',
     description:
       'Our design team produces a bespoke concept drawing — typically within 7–10 days. You review, give feedback, and we fine-tune until everything is right. At this point we provide a formal quote in TPU or PVC.',
-    image: '/images/wwu-03-proposal.png',
-    imageAlt: 'Two professionals reviewing a printed proposal document',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Factory-LpjjHDMVCwlZwjz6bgvvlsv60r3Phf.png',
+    imageAlt: 'Technician heat-welding TPU fabric in a manufacturing facility',
   },
   {
     number: '04',
     title: 'Manufacture',
     description:
       'Once approved, we issue an invoice — 50% secures your production slot, 50% before dispatch. Our TPU platforms are produced in Europe; our PVC range in China. Both facilities uphold strong ethical labour and quality standards.',
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Factory-LpjjHDMVCwlZwjz6bgvvlsv60r3Phf.png',
-    imageAlt: 'Technician heat-welding TPU fabric in a manufacturing facility',
+    image: '/images/wwu-04-manufacture.png',
+    imageAlt: 'Craftsperson heat-welding TPU fabric in a marine workshop',
   },
 ]
 
