@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, forwardRef } from 'react'
 import Image from 'next/image'
+import { WorkingWithUsThree } from './working-with-us-three'
 
 /* ─── Data ──────────────────────────────────────────────────────────── */
 
@@ -146,25 +147,33 @@ export function WorkingWithUsSection() {
     >
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
         {/* Header */}
-        <header className="mb-20 md:mb-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] mb-4 text-ocean">
-            Our Process
-          </p>
-          <h2
-            id="wwu-heading"
-            className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-balance leading-[1.1] text-foreground"
-          >
-            Working With Us
-          </h2>
-          <div
-            aria-hidden="true"
-            className="mt-5 h-px w-20 bg-border"
-          />
-          <p className="mt-6 max-w-lg leading-relaxed text-sm sm:text-base text-muted-foreground">
-            From initial enquiry through to aftercare, here is what to expect
-            when you work with us — eight clear stages, guided by the people
-            who designed and built your platform.
-          </p>
+        <header className="mb-20 md:mb-28 grid items-center gap-10 md:grid-cols-[1fr_auto]">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] mb-4 text-ocean">
+              Our Process
+            </p>
+            <h2
+              id="wwu-heading"
+              className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-balance leading-[1.1] text-foreground"
+            >
+              Working With Us
+            </h2>
+            <div
+              aria-hidden="true"
+              className="mt-5 h-px w-20 bg-border"
+            />
+            <p className="mt-6 max-w-lg leading-relaxed text-sm sm:text-base text-muted-foreground">
+              From initial enquiry through to aftercare, here is what to expect
+              when you work with us — eight clear stages, guided by the people
+              who designed and built your platform.
+            </p>
+          </div>
+
+          {/* Lightweight Three.js accent — sits beside copy on desktop,
+              below it on mobile; never overlaps the text. */}
+          <div className="w-full md:w-56 lg:w-64 md:justify-self-end">
+            <WorkingWithUsThree />
+          </div>
         </header>
 
         {/* Timeline */}
