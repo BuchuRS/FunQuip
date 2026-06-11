@@ -26,7 +26,7 @@ const STAGES: Stage[] = [
     number: '01',
     title: 'Enquiry & Brief',
     description:
-      'Every great project starts with a conversation. Share a few basic details with us — just enough to get the ball rolling. We are always happy to sign an NDA if needed.',
+      'Share your vision and requirements with us. We gather the essential details and scope of your project — no lengthy questionnaires, just a straightforward conversation to understand what you need.',
     image: '/images/wwu-01-enquiry.png',
     imageAlt: 'Client and engineer discussing a brief over yacht blueprints',
   },
@@ -34,7 +34,7 @@ const STAGES: Stage[] = [
     number: '02',
     title: 'Design & Configuration',
     description:
-      'We develop your wishlist into a detailed design brief using your General Arrangement. We explore position, pool depth, walkway widths, toy capacity, and any bespoke requirements — our designs are entirely custom.',
+      'We translate your brief into a detailed custom design. Our team explores layout, dimensions, materials, and bespoke features to create a configuration perfectly suited to your vessel.',
     image: '/images/wwu-02-design.png',
     imageAlt: "CAD drawings and colour samples on a marine engineer's desk",
     slider: {
@@ -49,7 +49,7 @@ const STAGES: Stage[] = [
     number: '03',
     title: 'Proposal & Approval',
     description:
-      'Our design team produces a bespoke concept drawing — typically within 7–10 days. You review, give feedback, and we fine-tune until everything is right. At this point we provide a formal quote in TPU or PVC.',
+      'We present a detailed proposal with renderings, specifications, and pricing. You review, provide feedback, and we refine until everything is exactly right. Once approved, we move forward to production.',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Factory-LpjjHDMVCwlZwjz6bgvvlsv60r3Phf.png',
     imageAlt: 'Technician heat-welding TPU fabric in a manufacturing facility',
   },
@@ -57,7 +57,7 @@ const STAGES: Stage[] = [
     number: '04',
     title: 'Manufacture',
     description:
-      'Once approved, we issue an invoice — 50% secures your production slot, 50% before dispatch. Our TPU platforms are produced in Europe; our PVC range in China. Both facilities uphold strong ethical labour and quality standards.',
+      'Your platform is carefully manufactured to specification at our facilities. We maintain strict quality and ethical standards throughout production, ensuring your finished product exceeds expectations.',
     image: '/images/wwu-04-manufacture.png',
     imageAlt: 'Craftsperson heat-welding TPU fabric in a marine workshop',
   },
