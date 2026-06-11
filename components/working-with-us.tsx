@@ -46,22 +46,6 @@ const STAGES: Stage[] = [
     image: '/images/wwu-04-manufacture.png',
     imageAlt: 'Craftsperson heat-welding TPU fabric in a marine workshop',
   },
-  {
-    number: '05',
-    title: 'Sea Trial & Delivery',
-    description:
-      'For Med delivery you pay only for transport within Europe — we cover import duties into Monaco. We personally deliver to mainland Europe to ensure everything arrives exactly as expected.',
-    image: '/images/wwu-05-seatrial.png',
-    imageAlt: 'Crew deploying a swim platform from a superyacht at anchor',
-  },
-  {
-    number: '06',
-    title: 'Aftercare',
-    description:
-      'All our inflatables carry a 5-year limited warranty and access to global service centres. When your TPU platform reaches end of life, we offer upcycling options here in the UK — we are with you for the long term.',
-    image: '/images/wwu-06-aftercare.png',
-    imageAlt: 'Marine technician servicing a luxury inflatable at a marina',
-  },
 ]
 
 /* ─── Section ───────────────────────────────────────────────────────── */
@@ -161,8 +145,8 @@ export function WorkingWithUsSection() {
             className="mt-5 h-px w-20 bg-border"
           />
           <p className="mt-6 max-w-lg leading-relaxed text-sm sm:text-base text-muted-foreground">
-            From initial enquiry through to aftercare, here is what to expect
-            when you work with us — eight clear stages, guided by the people
+            From initial enquiry through to manufacture, here is what to expect
+            when you work with us — four clear stages, guided by the people
             who designed and built your platform.
           </p>
         </header>
