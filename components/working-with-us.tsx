@@ -47,17 +47,17 @@ const STAGES: Stage[] = [
   },
   {
     number: '03',
-    title: 'Proposal & Approval',
+    title: 'Manufacture',
     description:
-      'We present a detailed proposal with renderings, specifications, and pricing. You review, provide feedback, and we refine until everything is exactly right. Once approved, we move forward to production.',
+      'Your platform is carefully manufactured to specification at our facilities. We maintain strict quality and ethical standards throughout production, ensuring your finished product exceeds expectations.',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Factory-LpjjHDMVCwlZwjz6bgvvlsv60r3Phf.png',
     imageAlt: 'Technician heat-welding TPU fabric in a manufacturing facility',
   },
   {
     number: '04',
-    title: 'Manufacture',
+    title: 'Delivery',
     description:
-      'Your platform is carefully manufactured to specification at our facilities. We maintain strict quality and ethical standards throughout production, ensuring your finished product exceeds expectations.',
+      'We present a detailed proposal with renderings, specifications, and pricing. You review, provide feedback, and we refine until everything is exactly right. Once approved, we move forward to production.',
     image: '/images/wwu-04-manufacture.png',
     imageAlt: 'Craftsperson heat-welding TPU fabric in a marine workshop',
   },
