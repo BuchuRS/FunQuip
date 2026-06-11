@@ -26,7 +26,7 @@ const STAGES: Stage[] = [
     number: '01',
     title: 'Enquiry & Brief',
     description:
-      'Share your vision and requirements with us. We gather the essential details and scope of your project — no lengthy questionnaires, just a straightforward conversation to understand what you need.',
+      'Tell us about your vision. We listen and ask the right questions to understand your needs, space constraints, and aspirations for your platform.',
     image: '/images/wwu-01-enquiry.png',
     imageAlt: 'Client and engineer discussing a brief over yacht blueprints',
   },
@@ -34,7 +34,7 @@ const STAGES: Stage[] = [
     number: '02',
     title: 'Design & Configuration',
     description:
-      'We translate your brief into a detailed custom design. Our team explores layout, dimensions, materials, and bespoke features to create a configuration perfectly suited to your vessel.',
+      'We create a custom design tailored to your vessel. Our team refines every detail—layout, dimensions, materials, and special features—until it&apos;s perfect.',
     image: '/images/wwu-02-design.png',
     imageAlt: "CAD drawings and colour samples on a marine engineer's desk",
     slider: {
@@ -49,7 +49,7 @@ const STAGES: Stage[] = [
     number: '03',
     title: 'Manufacture',
     description:
-      'Your platform is carefully manufactured to specification at our facilities. We maintain strict quality and ethical standards throughout production, ensuring your finished product exceeds expectations.',
+      'We build your platform with precision and care. Every component is crafted to our high standards, using quality materials and ethical practices.',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Factory-LpjjHDMVCwlZwjz6bgvvlsv60r3Phf.png',
     imageAlt: 'Technician heat-welding TPU fabric in a manufacturing facility',
   },
@@ -57,7 +57,7 @@ const STAGES: Stage[] = [
     number: '04',
     title: 'Delivery',
     description:
-      'We present a detailed proposal with renderings, specifications, and pricing. You review, provide feedback, and we refine until everything is exactly right. Once approved, we move forward to production.',
+      'Your finished platform arrives ready to use. We handle logistics and ensure everything is installed and working beautifully on your yacht.',
     image: '/images/wwu-04-manufacture.png',
     imageAlt: 'Craftsperson heat-welding TPU fabric in a marine workshop',
   },
