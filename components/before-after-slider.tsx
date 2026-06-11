@@ -9,6 +9,7 @@ interface BeforeAfterSliderProps {
   beforeLabel?: string
   afterLabel?: string
   alt?: string
+  rounded?: boolean
 }
 
 export function BeforeAfterSlider({
@@ -17,6 +18,7 @@ export function BeforeAfterSlider({
   beforeLabel = 'Before',
   afterLabel = 'After',
   alt = 'Before and after comparison',
+  rounded = true,
 }: BeforeAfterSliderProps) {
   const [sliderPosition, setSliderPosition] = useState(50)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -70,7 +72,9 @@ export function BeforeAfterSlider({
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-video rounded-2xl overflow-hidden select-none cursor-col-resize"
+      className={`relative w-full aspect-video overflow-hidden select-none cursor-col-resize ${
+        rounded ? 'rounded-2xl' : ''
+      }`}
       onMouseDown={handleMouseDown}
       onTouchStart={handleTouchStart}
     >

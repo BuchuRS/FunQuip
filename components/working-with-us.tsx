@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, forwardRef } from 'react'
 import Image from 'next/image'
+import { BeforeAfterSlider } from '@/components/before-after-slider'
 
 /* ─── Data ──────────────────────────────────────────────────────────── */
 
@@ -11,6 +12,13 @@ interface Stage {
   description: string
   image: string
   imageAlt: string
+  slider?: {
+    beforeImage: string
+    afterImage: string
+    beforeLabel: string
+    afterLabel: string
+    alt: string
+  }
 }
 
 const STAGES: Stage[] = [
@@ -18,7 +26,7 @@ const STAGES: Stage[] = [
     number: '01',
     title: 'Enquiry & Brief',
     description:
-      'Every great project starts with a conversation. Share a few basic details with us — just enough to get the ball rolling. We are always happy to sign an NDA if needed.',
+      'Tell us about your vision. We listen and ask the right questions to understand your needs, space constraints, and aspirations for your platform.',
     image: '/images/wwu-01-enquiry.png',
     imageAlt: 'Client and engineer discussing a brief over yacht blueprints',
   },
@@ -26,41 +34,32 @@ const STAGES: Stage[] = [
     number: '02',
     title: 'Design & Configuration',
     description:
-      'We develop your wishlist into a detailed design brief using your General Arrangement. We explore position, pool depth, walkway widths, toy capacity, and any bespoke requirements — our designs are entirely custom.',
+      'We create a custom design tailored to your vessel. Our team refines every detail—layout, dimensions, materials, and special features—until it&apos;s perfect.',
     image: '/images/wwu-02-design.png',
     imageAlt: "CAD drawings and colour samples on a marine engineer's desk",
+    slider: {
+      beforeImage: '/images/slider-before.png',
+      afterImage: '/images/slider-after.png',
+      beforeLabel: 'Design',
+      afterLabel: 'Reality',
+      alt: 'FunQuip Platform — Design vs Reality',
+    },
   },
   {
     number: '03',
-    title: 'Proposal & Approval',
+    title: 'Manufacture',
     description:
-      'Our design team produces a bespoke concept drawing — typically within 7–10 days. You review, give feedback, and we fine-tune until everything is right. At this point we provide a formal quote in TPU or PVC.',
-    image: '/images/wwu-03-proposal.png',
-    imageAlt: 'Two professionals reviewing a printed proposal document',
+      'We build your platform with precision and care. Every component is crafted to our high standards, using quality materials and ethical practices.',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Factory-LpjjHDMVCwlZwjz6bgvvlsv60r3Phf.png',
+    imageAlt: 'Technician heat-welding TPU fabric in a manufacturing facility',
   },
   {
     number: '04',
-    title: 'Manufacture',
+    title: 'Delivery',
     description:
-      'Once approved, we issue an invoice — 50% secures your production slot, 50% before dispatch. Our TPU platforms are produced in Europe; our PVC range in China. Both facilities uphold strong ethical labour and quality standards.',
-    image: '/images/wwu-04-manufacture.png',
-    imageAlt: 'Craftsperson heat-welding TPU fabric in a marine workshop',
-  },
-  {
-    number: '05',
-    title: 'Sea Trial & Delivery',
-    description:
-      'For Med delivery you pay only for transport within Europe — we cover import duties into Monaco. We personally deliver to mainland Europe to ensure everything arrives exactly as expected.',
-    image: '/images/wwu-05-seatrial.png',
-    imageAlt: 'Crew deploying a swim platform from a superyacht at anchor',
-  },
-  {
-    number: '06',
-    title: 'Aftercare',
-    description:
-      'All our inflatables carry a 5-year limited warranty and access to global service centres. When your TPU platform reaches end of life, we offer upcycling options here in the UK — we are with you for the long term.',
-    image: '/images/wwu-06-aftercare.png',
-    imageAlt: 'Marine technician servicing a luxury inflatable at a marina',
+      'Your finished platform arrives ready to use. We handle logistics and ensure everything is installed and working beautifully on your yacht.',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Remake%20this%20picture%2C%20change%20logo%20on%20the%20bag%20to%20the%20%402%20logo%20with%20a%20realistic%20texture%20that%20conforms%20to%20the%20bag%27s%20shape%2C%20and%20slightly%20change%20the%20camera%20angle%20to%20a%20more%20dynamic%20three-quarter%20view%2C%20remove%20the%20_Comfort%20tr-zS44CJ6NPWwsv1vVtxokzeg7kSmdJh.png',
+    imageAlt: 'FunQuip delivery bag on a tropical beach',
   },
 ]
 
@@ -161,8 +160,8 @@ export function WorkingWithUsSection() {
             className="mt-5 h-px w-20 bg-border"
           />
           <p className="mt-6 max-w-lg leading-relaxed text-sm sm:text-base text-muted-foreground">
-            From initial enquiry through to aftercare, here is what to expect
-            when you work with us — eight clear stages, guided by the people
+            From initial enquiry through to manufacture, here is what to expect
+            when you work with us — four clear stages, guided by the people
             who designed and built your platform.
           </p>
         </header>
@@ -361,16 +360,29 @@ function StageCard({ stage, isActive }: { stage: Stage; isActive: boolean }) {
         }}
       />
 
-      {/* Image */}
-      <div className="relative w-full aspect-[4/3] overflow-hidden">
-        <Image
-          src={stage.image}
-          alt={stage.imageAlt}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-          sizes="(max-width: 680px) 100vw, 45vw"
-        />
-      </div>
+      {/* Image / Interactive slider */}
+      {stage.slider ? (
+        <div className="relative w-full">
+          <BeforeAfterSlider
+            beforeImage={stage.slider.beforeImage}
+            afterImage={stage.slider.afterImage}
+            beforeLabel={stage.slider.beforeLabel}
+            afterLabel={stage.slider.afterLabel}
+            alt={stage.slider.alt}
+            rounded={false}
+          />
+        </div>
+      ) : (
+        <div className="relative w-full aspect-[4/3] overflow-hidden">
+          <Image
+            src={stage.image}
+            alt={stage.imageAlt}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+            sizes="(max-width: 680px) 100vw, 45vw"
+          />
+        </div>
+      )}
 
       {/* Text */}
       <div className="px-6 py-5">
