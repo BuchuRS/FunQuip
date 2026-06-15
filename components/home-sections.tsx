@@ -230,22 +230,23 @@ export function AboutPreviewSection() {
           </div>
           <div>
             <p className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
-              Why choose FunQuip
+              Why choose Xflatable
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               Super-firm underfoot. Zero obtrusive branding.
             </h2>
             <p className="mt-6 text-muted-foreground leading-relaxed">
-              Our inflatable platforms are a practical solution for significantly
-              increasing your square meterage — whether you need a tender launch
-              zone, a lounge area, or a stable crew workstation. The quality of
-              our work speaks for itself.
+              Xflatable is a sub-brand of Xquip and Xtenders — bringing together
+              decades of marine expertise to deliver premium inflatable platforms
+              purpose-built for superyachts and expedition vessels.
             </p>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              Choose Marine-X TPU for a lightweight, eco-conscious finish with
-              exceptional tear strength, or our durable PVC range for everyday
-              reliability. Both carry a 5-year limited warranty and access to
-              global service centres.
+              Our inflatable platforms are a practical solution for significantly
+              increasing your square meterage — whether you need a tender launch
+              zone, a lounge area, or a stable crew workstation. Choose Marine-X
+              TPU for a lightweight, eco-conscious finish with exceptional tear
+              strength, or our durable PVC range for everyday reliability. Both
+              carry a 5-year limited warranty and access to global service centres.
             </p>
             <div className="mt-8">
               <Button variant="outline" asChild>
