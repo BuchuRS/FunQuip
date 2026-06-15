@@ -233,7 +233,7 @@ export function AboutPreviewSection() {
               Why choose Xflatable
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Super-firm underfoot. Zero obtrusive branding.
+              Built by Xquip &amp; Xtenders. Engineered for the sea.
             </h2>
             <p className="mt-6 text-muted-foreground leading-relaxed">
               Xflatable is a sub-brand of Xquip and Xtenders — bringing together
