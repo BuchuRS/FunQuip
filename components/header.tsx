@@ -17,6 +17,7 @@ const navigation = [
       { name: 'Professional', href: '/products?category=professional' },
     ]
   },
+  { name: 'Build your Platform', href: '/build-your-platform' },
   { name: 'Services', href: '/about#services' },
   { name: 'Clients', href: '/about#clients' },
   { name: 'About us', href: '/about' },
