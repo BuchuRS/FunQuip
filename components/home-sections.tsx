@@ -243,10 +243,8 @@ export function AboutPreviewSection() {
             <p className="mt-4 text-muted-foreground leading-relaxed">
               Our inflatable platforms are a practical solution for significantly
               increasing your square meterage — whether you need a tender launch
-              zone, a lounge area, or a stable crew workstation. Choose Marine-X
-              TPU for a lightweight, eco-conscious finish with exceptional tear
-              strength, or our durable PVC range for everyday reliability. Both
-              carry a 5-year limited warranty and access to global service centres.
+              zone, a lounge area, or a stable crew workstation. The quality of
+              our work speaks for itself.
             </p>
             <div className="mt-8">
               <Button variant="outline" asChild>
