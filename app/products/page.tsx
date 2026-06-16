@@ -170,7 +170,7 @@ export default function ProductsPage() {
                 Full Range
               </p>
               <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground text-balance max-w-xl">
-                All Platforms &amp; Products
+                Platforms &amp; Hexes
               </h2>
             </div>
             <ProductGrid />
