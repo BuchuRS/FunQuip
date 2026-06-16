@@ -162,6 +162,54 @@ export default function ProductsPage() {
           </div>
         </section>
 
+        {/* Standard Features */}
+        <section className="py-20 md:py-28 bg-background border-t border-border">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground text-center text-balance mb-14">
+              Standard features of our inflatable platforms
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {[
+                {
+                  image: '/images/feature-handles.png',
+                  title: 'Handles',
+                  body: 'Discreet, colour-coordinated carry handles on every platform.',
+                },
+                {
+                  image: '/images/feature-loops.png',
+                  title: 'Soft connection loops',
+                  body: 'We only use soft loop ties on all our inflatables — no scratched hulls.',
+                },
+                {
+                  image: '/images/feature-covers.png',
+                  title: 'Removable covers',
+                  body: 'Our printed, removable covers are non-slip and easy to clean.',
+                },
+                {
+                  image: '/images/feature-valves.png',
+                  title: 'Covered valves',
+                  body: 'Discreet, flush-mounted valves come as standard on every model.',
+                },
+              ].map((feature) => (
+                <div key={feature.title} className="flex flex-col gap-4">
+                  <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-secondary">
+                    <Image
+                      src={feature.image}
+                      alt={feature.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{feature.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* All Products */}
         <section className="py-20 md:py-28 bg-background">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
