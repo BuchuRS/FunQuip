@@ -83,13 +83,21 @@ export function Header() {
             />
           </Link>
 
-          {/* Right - Contact Button */}
-          <Link
-            href="/contact"
-            className="px-5 py-2 text-sm font-medium text-neutral-700 border border-neutral-300 rounded-full hover:bg-neutral-50 hover:border-neutral-400 transition-colors"
-          >
-            Contact
-          </Link>
+          {/* Right - Buttons */}
+          <div className="flex items-center gap-2">
+            <Link
+              href="/build-your-platform"
+              className="px-5 py-2 text-sm font-medium text-white bg-neutral-900 rounded-full hover:bg-neutral-700 transition-colors"
+            >
+              Build your Platform
+            </Link>
+            <Link
+              href="/contact"
+              className="px-5 py-2 text-sm font-medium text-neutral-700 border border-neutral-300 rounded-full hover:bg-neutral-50 hover:border-neutral-400 transition-colors"
+            >
+              Contact
+            </Link>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
