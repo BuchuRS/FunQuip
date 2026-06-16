@@ -110,58 +110,6 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        {/* Why Xflatable — editorial banner */}
-        <section className="bg-secondary py-20 md:py-28">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-              <div>
-                <p className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
-                  Why Xflatable
-                </p>
-                <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground text-balance">
-                  Effortless deployment. Rock-solid stability.
-                </h2>
-                <div className="mt-8 space-y-6">
-                  {[
-                    {
-                      title: 'Effortless Deployment',
-                      body: 'Smart detailing and user-friendly features make setup seamless — no awkward valves, no trip hazards, no wasted time.',
-                    },
-                    {
-                      title: 'Versatile by Design',
-                      body: 'From tender launch zones to yoga decks and crew workstations — our modular platforms adapt effortlessly to your daily demands.',
-                    },
-                    {
-                      title: 'Built for Safety',
-                      body: 'Exceptional stability at water level. Whether it\'s a sun-soaked afternoon with guests or a maintenance session, everyone moves with confidence.',
-                    },
-                  ].map((item) => (
-                    <div key={item.title} className="flex gap-4">
-                      <div className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-accent" />
-                      <div>
-                        <h3 className="font-semibold text-foreground mb-1">
-                          {item.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                          {item.body}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
-                <Image
-                  src="/images/hex-platforms-2.png"
-                  alt="Xflatable platform in action"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Standard Features */}
         <section className="py-20 md:py-28 bg-background border-t border-border">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
