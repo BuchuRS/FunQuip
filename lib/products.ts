@@ -5,6 +5,7 @@ export interface Product {
   tagline: string
   description: string
   image: string
+  price: string
   specs: {
     label: string
     value: string
@@ -21,6 +22,7 @@ export const products: Product[] = [
     description:
       'Our flagship inflatable platform delivers exceptional stability and generous surface area for swimming, sunbathing, and water access. Engineered with premium TPU materials for durability and sustainability.',
     image: '/images/product-platform-classic.png',
+    price: 'From €8,500',
     specs: [
       { label: 'Dimensions', value: '4m × 3m / Custom' },
       { label: 'Capacity', value: '100 kg/m²' },
@@ -42,6 +44,7 @@ export const products: Product[] = [
     description:
       'Our modular platform system allows unlimited configurations. Connect multiple units with our heavy-duty zip joiners to create custom layouts that perfectly match your yacht and on-water lifestyle.',
     image: '/images/product-modular.png',
+    price: 'From €5,200 / module',
     specs: [
       { label: 'Unit Size', value: '2m × 2m per module' },
       { label: 'Capacity', value: '100 kg/m²' },
@@ -63,6 +66,7 @@ export const products: Product[] = [
     description:
       'The Hex Single is our core hexagonal platform module — a lightweight, interlocking unit that creates striking honeycomb layouts at the water\'s edge. Ideal as a standalone sun deck or the foundation for a larger Hex array.',
     image: '/images/hex-platforms-2.png',
+    price: 'From €3,800',
     specs: [
       { label: 'Shape', value: 'Hexagonal' },
       { label: 'Diameter', value: '2.4m flat-to-flat' },
@@ -84,6 +88,7 @@ export const products: Product[] = [
     description:
       'Connect multiple Hex Singles to create a dramatic, large-format floating surface. The Hex Array is perfect for superyacht beach clubs, water-level lounges, and bespoke swim areas — configurable to any shape or size.',
     image: '/images/hex-platforms-2.png',
+    price: 'From €10,500',
     specs: [
       { label: 'Configuration', value: 'Fully custom' },
       { label: 'Min. Array', value: '3 modules' },
