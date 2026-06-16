@@ -12,33 +12,6 @@ export const metadata = {
     'Explore our range of premium inflatable docks, platforms, and sea pools designed for superyachts.',
 }
 
-const platformTypes = [
-  {
-    label: 'Leisure',
-    description: 'Unparalleled luxury at water level — sunbathing, swimming, and entertaining.',
-    image: '/images/Platformdock.png',
-    href: '/products?category=platforms',
-  },
-  {
-    label: 'Docking',
-    description: 'Secure, modular docking systems for jet skis, tenders, and water toys.',
-    image: '/images/category-docking.png',
-    href: '/products?category=docking-solutions',
-  },
-  {
-    label: 'Sea Pools',
-    description: 'Protected swimming enclosures — safe, calm, and private.',
-    image: '/images/product-seapool.webp',
-    href: '/products?category=sea-pools',
-  },
-  {
-    label: 'Professional',
-    description: 'Heavy-duty crew maintenance platforms built for serious work.',
-    image: '/images/product-maintenance.png',
-    href: '/products?category=professional',
-  },
-]
-
 const highlights = [
   { stat: '< 5 min', label: 'Avg. setup time' },
   { stat: '100 kg/m²', label: 'Load capacity' },
@@ -98,103 +71,40 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        {/* Platform types — editorial grid */}
+        {/* Build your Platform CTA */}
         <section className="py-20 md:py-28 bg-background">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="mb-12">
-              <p className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
-                Platform Types
-              </p>
-              <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground text-balance max-w-2xl">
-                Every anchorage, a destination.
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Large left card */}
-              <Link
-                href={platformTypes[0].href}
-                className="group relative aspect-[4/3] rounded-2xl overflow-hidden block row-span-2"
-              >
+            <div className="relative rounded-3xl overflow-hidden bg-primary text-primary-foreground">
+              <div className="absolute inset-0 z-0">
                 <Image
-                  src={platformTypes[0].image}
-                  alt={platformTypes[0].label}
+                  src="/images/Platformdock.png"
+                  alt="Custom inflatable platform"
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover opacity-20"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-8">
-                  <span className="text-xs font-medium uppercase tracking-widest text-white/60 mb-2">
-                    01 / Leisure
-                  </span>
-                  <h3 className="text-4xl font-bold text-white mb-2">
-                    {platformTypes[0].label}
-                  </h3>
-                  <p className="text-white/70 text-sm leading-relaxed max-w-sm mb-4">
-                    {platformTypes[0].description}
+              </div>
+              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 px-10 py-16 md:py-20">
+                <div className="max-w-xl">
+                  <p className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
+                    Bespoke Configuration
                   </p>
-                  <span className="inline-flex items-center text-sm font-medium text-white gap-1 group-hover:gap-2 transition-all">
-                    Explore <ArrowRight className="h-4 w-4" />
-                  </span>
-                </div>
-              </Link>
-
-              {/* Top right */}
-              <Link
-                href={platformTypes[1].href}
-                className="group relative aspect-[4/3] rounded-2xl overflow-hidden block"
-              >
-                <Image
-                  src={platformTypes[1].image}
-                  alt={platformTypes[1].label}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <span className="text-xs font-medium uppercase tracking-widest text-white/60 mb-2">
-                    02 / Docking
-                  </span>
-                  <h3 className="text-2xl font-bold text-white mb-1">
-                    {platformTypes[1].label}
-                  </h3>
-                  <p className="text-white/70 text-xs leading-relaxed mb-3">
-                    {platformTypes[1].description}
+                  <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance leading-tight">
+                    Every anchorage,
+                    <br />
+                    <span className="italic font-serif font-normal">a destination.</span>
+                  </h2>
+                  <p className="mt-5 text-primary-foreground/70 leading-relaxed max-w-md">
+                    No two yachts are the same. Use our platform builder to configure your ideal layout — size, material, accessories, and connection points — tailored exactly to your vessel.
                   </p>
-                  <span className="inline-flex items-center text-xs font-medium text-white gap-1 group-hover:gap-2 transition-all">
-                    Explore <ArrowRight className="h-3 w-3" />
-                  </span>
                 </div>
-              </Link>
-
-              {/* Bottom right — two small cards side by side */}
-              <div className="grid grid-cols-2 gap-4">
-                {platformTypes.slice(2).map((type, i) => (
+                <div className="flex-shrink-0">
                   <Link
-                    key={type.label}
-                    href={type.href}
-                    className="group relative aspect-square rounded-2xl overflow-hidden block"
+                    href="/build-your-platform"
+                    className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-background text-foreground font-semibold text-sm hover:bg-secondary transition-colors"
                   >
-                    <Image
-                      src={type.image}
-                      alt={type.label}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                    <div className="absolute inset-0 flex flex-col justify-end p-4">
-                      <span className="text-xs font-medium uppercase tracking-widest text-white/60 mb-1">
-                        0{i + 3} / {type.label}
-                      </span>
-                      <h3 className="text-lg font-bold text-white mb-0.5">
-                        {type.label}
-                      </h3>
-                      <span className="inline-flex items-center text-xs font-medium text-white gap-1 group-hover:gap-2 transition-all">
-                        Explore <ArrowRight className="h-3 w-3" />
-                      </span>
-                    </div>
+                    Build your Platform <ArrowRight className="h-4 w-4" />
                   </Link>
-                ))}
+                </div>
               </div>
             </div>
           </div>
