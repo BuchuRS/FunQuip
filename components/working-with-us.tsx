@@ -219,7 +219,7 @@ export function WorkingWithUsSection() {
               <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance leading-tight">
                 Build your dream platform.
                 <br />
-                <span className="italic font-serif font-normal">Crafted for your yacht.</span>
+                Crafted for your yacht.
               </h2>
               <p className="mt-5 text-primary-foreground/70 leading-relaxed max-w-md">
                 Every yacht is unique — and your platform should be too. Configure size, shape, material and accessories, and our team will deliver a bespoke solution built to fit your vessel perfectly.
