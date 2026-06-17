@@ -15,6 +15,22 @@ export interface Product {
 
 export const products: Product[] = [
   {
+    id: 'teak-platform-custom',
+    name: 'Teak Platform Custom',
+    category: 'Platforms',
+    tagline: 'Built exactly to your brief',
+    description: 'No standard size fits every yacht. The Teak Platform Custom is designed from scratch around your vessel — custom dimensions, shape, connection points, and cover finish. Our team handles every detail from brief to delivery.',
+    image: '/images/product-teak-platform.png',
+    price: 'Price on request',
+    specs: [
+      { label: 'Dimensions', value: 'Fully bespoke' },
+      { label: 'Capacity', value: '100 kg/m²' },
+      { label: 'Cover', value: 'Teak-print non-slip' },
+      { label: 'Lead Time', value: 'On request' },
+    ],
+    features: ['Custom dimensions and shape', 'Bespoke connection points', 'Optional branding', 'Global delivery & service'],
+  },
+  {
     id: 'teak-platform-2x1',
     name: 'Teak Platform 2×1',
     category: 'Platforms',
