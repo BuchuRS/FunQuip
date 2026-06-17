@@ -211,7 +211,7 @@ export function WorkingWithUsSection() {
               className="object-cover opacity-20"
             />
           </div>
-          <div className="relative z-10 flex flex-col justify-between min-h-[320px] px-10 py-16 md:py-20">
+          <div className="relative z-10 flex flex-col md:flex-row md:items-end md:justify-between gap-10 px-10 py-16 md:py-20">
             <div className="max-w-xl">
               <p className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
                 Bespoke Configuration
@@ -225,7 +225,7 @@ export function WorkingWithUsSection() {
                 Every yacht is unique — and your platform should be too. Configure size, shape, material and accessories, and our team will deliver a bespoke solution built to fit your vessel perfectly.
               </p>
             </div>
-            <div className="mt-10">
+            <div className="shrink-0">
               <Link
                 href="/build-your-platform"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary-foreground text-primary font-semibold text-sm hover:bg-primary-foreground/90 transition-colors"
