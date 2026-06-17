@@ -24,9 +24,9 @@ const navigation = {
 
 export function Footer() {
   return (
-    <footer className="bg-primary text-primary-foreground border-t border-primary-foreground/20">
+    <footer className="bg-primary text-primary-foreground">
       {/* Main Footer */}
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 border-t border-primary-foreground/20 py-16">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-2">
