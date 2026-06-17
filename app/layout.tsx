@@ -1,6 +1,6 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Playfair_Display, Inter } from 'next/font/google'
+import { Geist, Geist_Mono, Playfair_Display, Inter, Barlow_Semi_Condensed } from 'next/font/google'
 import './globals.css'
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
@@ -17,6 +17,11 @@ const playfair = Playfair_Display({
 const inter = Inter({ 
   variable: '--font-inter', 
   subsets: ['latin'],
+})
+const barlowSemiCondensed = Barlow_Semi_Condensed({
+  variable: '--font-barlow-semi-condensed',
+  subsets: ['latin'],
+  weight: ['700', '800', '900'],
 })
 
 export const metadata: Metadata = {
@@ -60,7 +65,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${inter.variable} bg-background`}
+      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${inter.variable} ${barlowSemiCondensed.variable} bg-background`}
     >
       <body className="font-sans antialiased">
         {children}

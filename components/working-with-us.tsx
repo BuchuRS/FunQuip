@@ -112,7 +112,8 @@ export function WorkingWithUsSection() {
         {/* Heading */}
         <h2
           id="wwu-heading"
-          className="text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-balance mb-6"
+          className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-balance mb-6"
+          style={{ fontFamily: 'var(--font-barlow-semi-condensed)' }}
         >
           Our Process
         </h2>
@@ -216,7 +217,10 @@ export function WorkingWithUsSection() {
               <p className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
                 Bespoke Configuration
               </p>
-              <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance leading-tight">
+              <h2
+                className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-balance leading-tight"
+                style={{ fontFamily: 'var(--font-barlow-semi-condensed)' }}
+              >
                 Build your dream platform.
                 <br />
                 Crafted for your yacht.
