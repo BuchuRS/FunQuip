@@ -118,8 +118,11 @@ export function WorkingWithUsSection() {
               </div>
 
               {/* Text */}
-              <h3 className="text-sm font-bold uppercase tracking-widest text-primary-foreground mb-2">
-                {stage.number} / {stage.title}
+              <p className="text-xs font-semibold uppercase tracking-widest text-primary-foreground/40 mb-2">
+                {stage.number}
+              </p>
+              <h3 className="text-base font-bold uppercase tracking-wide text-primary-foreground mb-2">
+                {stage.title}
               </h3>
               <p className="text-sm leading-relaxed text-primary-foreground/60">
                 {stage.description}
