@@ -23,7 +23,7 @@ export function HeroSection() {
       {/* Content - Centered */}
       <div className="relative z-10 mx-auto max-w-5xl px-6 pt-32 pb-16 lg:px-8 text-center flex-1 flex flex-col items-center justify-center">
         <h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white uppercase leading-tight"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white uppercase leading-tight"
           style={{ fontFamily: 'var(--font-barlow-semi-condensed)' }}
         >
           Designed for Performance.
@@ -110,7 +110,7 @@ export function FeaturesSection() {
             Built for the Water
           </p>
           <h2
-            className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-foreground mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight text-foreground mb-6"
             style={{ fontFamily: 'var(--font-barlow-semi-condensed)' }}
           >
             Inflate. Deploy.
