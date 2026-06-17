@@ -123,19 +123,16 @@ export function WorkingWithUsSection() {
           who designed and built your platform.
         </p>
 
-        {/* Cards — desktop: 3-up carousel, mobile: single scroll */}
+        {/* Cards — 3-up carousel */}
         <div className="overflow-hidden">
           <div
-            className="grid grid-cols-1 sm:grid-cols-3 gap-4 transition-transform duration-500 ease-in-out"
-            style={{
-              // On desktop shift the grid left by offset * (100%/3 + gap)
-              transform: `translateX(calc(-${offset} * (33.333% + 0.5rem)))`,
-            }}
+            className="flex gap-4 transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(calc(-${offset} * (100% / 3 + 0.444rem)))` }}
           >
             {STAGES.map((stage) => (
               <div
                 key={stage.number}
-                className="flex flex-col bg-primary-foreground/5 rounded-xl overflow-hidden border border-primary-foreground/10 shrink-0"
+                className="flex flex-col bg-primary-foreground/5 rounded-xl overflow-hidden border border-primary-foreground/10 shrink-0 w-[calc(33.333%-0.667rem)]"
               >
                 {/* Image */}
                 {stage.slider ? (
@@ -156,15 +153,18 @@ export function WorkingWithUsSection() {
                       alt={stage.imageAlt}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 640px) 100vw, 33vw"
+                      sizes="33vw"
                     />
                   </div>
                 )}
 
                 {/* Text */}
                 <div className="px-5 py-6 flex flex-col gap-2">
-                  <h3 className="text-sm font-bold uppercase tracking-widest text-primary-foreground">
-                    {stage.number} / {stage.title}
+                  <p className="text-xs font-semibold uppercase tracking-widest text-primary-foreground/40">
+                    {stage.number}
+                  </p>
+                  <h3 className="text-sm font-bold uppercase tracking-wide text-primary-foreground">
+                    {stage.title}
                   </h3>
                   <p className="text-sm leading-relaxed text-primary-foreground/60">
                     {stage.description}
