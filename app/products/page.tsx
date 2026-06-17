@@ -145,9 +145,9 @@ export default function ProductsPage() {
                   body: 'Dual-action valve system inflates any platform in under 5 minutes.',
                 },
                 {
-                  image: '/images/feature-anchor.png',
-                  title: 'Anchor points',
-                  body: 'Stainless steel D-rings welded flush into the surface at key positions.',
+                  image: '/images/feature-modularity.png',
+                  title: 'Modularity',
+                  body: 'Zip-joiner system connects multiple modules together for any configuration.',
                 },
                 {
                   image: '/images/feature-seams.png',
