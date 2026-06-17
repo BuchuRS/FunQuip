@@ -42,12 +42,13 @@ export default function ProductsPage() {
             <p className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
               Inflatable Platforms
             </p>
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight text-white uppercase leading-tight text-balance max-w-4xl">
+            <h1
+              className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white uppercase leading-tight text-balance max-w-4xl"
+              style={{ fontFamily: 'var(--font-barlow-semi-condensed)' }}
+            >
               Built for the Sea.
               <br />
-              <span className="italic font-serif font-normal normal-case text-white/80">
-                Designed for you.
-              </span>
+              Designed for you.
             </h1>
             <p className="mt-6 text-lg text-white/70 max-w-xl leading-relaxed">
               Our modular inflatable platforms zip together to create large, stable surfaces — whether you need a tender launch zone, a lounge area, or a stable crew workstation.
@@ -144,9 +145,9 @@ export default function ProductsPage() {
                   body: 'Dual-action valve system inflates any platform in under 5 minutes.',
                 },
                 {
-                  image: '/images/feature-anchor.png',
-                  title: 'Anchor points',
-                  body: 'Stainless steel D-rings welded flush into the surface at key positions.',
+                  image: '/images/feature-modularity.png',
+                  title: 'Modularity',
+                  body: 'Zip-joiner system connects multiple modules together for any configuration.',
                 },
                 {
                   image: '/images/feature-seams.png',
