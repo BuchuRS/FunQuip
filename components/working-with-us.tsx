@@ -211,27 +211,26 @@ export function WorkingWithUsSection() {
               className="object-cover opacity-20"
             />
           </div>
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 px-10 py-16 md:py-20">
+          <div className="relative z-10 flex flex-col justify-between min-h-[320px] px-10 py-16 md:py-20">
             <div className="max-w-xl">
               <p className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
                 Bespoke Configuration
               </p>
               <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance leading-tight">
-                Every anchorage,
+                Build your dream platform.
                 <br />
-                <span className="italic font-serif font-normal">a destination.</span>
+                <span className="italic font-serif font-normal">Crafted for your yacht.</span>
               </h2>
               <p className="mt-5 text-primary-foreground/70 leading-relaxed max-w-md">
-                No two yachts are the same. Use our platform builder to configure your ideal layout — size, material, accessories, and connection points — tailored exactly to your vessel.
+                Every yacht is unique — and your platform should be too. Configure size, shape, material and accessories, and our team will deliver a bespoke solution built to fit your vessel perfectly.
               </p>
             </div>
-            <div className="flex-shrink-0">
+            <div className="mt-10">
               <Link
                 href="/build-your-platform"
-                className="group inline-flex items-center gap-3 text-primary-foreground text-sm font-semibold uppercase tracking-widest border-b border-primary-foreground/40 pb-1 hover:border-primary-foreground transition-colors"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary-foreground text-primary font-semibold text-sm hover:bg-primary-foreground/90 transition-colors"
               >
-                Build your Platform
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                Start building <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
