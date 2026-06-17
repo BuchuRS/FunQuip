@@ -15,50 +15,6 @@ export interface Product {
 
 export const products: Product[] = [
   {
-    id: 'classic-platform',
-    name: 'Classic Platform',
-    category: 'Platforms',
-    tagline: 'The foundation of superyacht leisure',
-    description:
-      'Our flagship inflatable platform delivers exceptional stability and generous surface area for swimming, sunbathing, and water access. Engineered with premium TPU materials for durability and sustainability.',
-    image: '/images/product-platform-classic.png',
-    price: 'From €8,500',
-    specs: [
-      { label: 'Dimensions', value: '4m × 3m / Custom' },
-      { label: 'Capacity', value: '100 kg/m²' },
-      { label: 'Setup Time', value: '< 5 minutes' },
-      { label: 'Weight', value: '45 kg' },
-    ],
-    features: [
-      'Non-slip removable covers',
-      'Integrated D-rings for securing',
-      'Reinforced connection points',
-      'UV-resistant materials',
-    ],
-  },
-  {
-    id: 'modular-platform',
-    name: 'Modular Platform',
-    category: 'Platforms',
-    tagline: 'Endless configurations for any vessel',
-    description:
-      'Our modular platform system allows unlimited configurations. Connect multiple units with our heavy-duty zip joiners to create custom layouts that perfectly match your yacht and on-water lifestyle.',
-    image: '/images/product-modular.png',
-    price: 'From €5,200 / module',
-    specs: [
-      { label: 'Unit Size', value: '2m × 2m per module' },
-      { label: 'Capacity', value: '100 kg/m²' },
-      { label: 'Connection', value: 'Zip joiner system' },
-      { label: 'Max Configuration', value: 'Unlimited' },
-    ],
-    features: [
-      'Seamless zip connections',
-      'Mix and match modules',
-      'Standardized anchor points',
-      'Interchangeable covers',
-    ],
-  },
-  {
     id: 'teak-platform-2x1',
     name: 'Teak Platform 2×1',
     category: 'Platforms',
