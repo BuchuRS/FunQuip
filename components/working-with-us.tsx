@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { BeforeAfterSlider } from '@/components/before-after-slider'
 
 /* ─── Data ──────────────────────────────────────────────────────────── */
@@ -199,47 +199,41 @@ export function WorkingWithUsSection() {
       </div>
     </section>
 
-    {/* Build your Platform */}
-    <section className="bg-background py-20 md:py-28">
+    {/* Build your Platform CTA */}
+    <section className="py-20 md:py-28 bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-
-          {/* Left — text */}
-          <div>
-            <p className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
-              Bespoke Configuration
-            </p>
-            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground text-balance leading-tight mb-6">
-              Build your Platform
-            </h2>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              No two yachts are the same. Use our platform builder to configure
-              your ideal layout — size, material, accessories, and connection
-              points — tailored exactly to your vessel.
-            </p>
-            <p className="text-muted-foreground leading-relaxed mb-8">
-              Our team will review your configuration and come back with a
-              detailed quote and 3D visualisation within 48 hours.
-            </p>
-            <Link
-              href="/build-your-platform"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors"
-            >
-              Start building <ArrowUpRight className="h-4 w-4" />
-            </Link>
-          </div>
-
-          {/* Right — image */}
-          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+        <div className="relative rounded-3xl overflow-hidden bg-primary text-primary-foreground">
+          <div className="absolute inset-0 z-0">
             <Image
               src="/images/Platformdock.png"
-              alt="Custom inflatable platform configuration"
+              alt="Custom inflatable platform"
               fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover opacity-20"
             />
           </div>
-
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 px-10 py-16 md:py-20">
+            <div className="max-w-xl">
+              <p className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
+                Bespoke Configuration
+              </p>
+              <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance leading-tight">
+                Every anchorage,
+                <br />
+                <span className="italic font-serif font-normal">a destination.</span>
+              </h2>
+              <p className="mt-5 text-primary-foreground/70 leading-relaxed max-w-md">
+                No two yachts are the same. Use our platform builder to configure your ideal layout — size, material, accessories, and connection points — tailored exactly to your vessel.
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <Link
+                href="/build-your-platform"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-background text-foreground font-semibold text-sm hover:bg-secondary transition-colors"
+              >
+                Build your Platform <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>
