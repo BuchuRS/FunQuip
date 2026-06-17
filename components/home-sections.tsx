@@ -22,9 +22,13 @@ export function HeroSection() {
 
       {/* Content - Centered */}
       <div className="relative z-10 mx-auto max-w-5xl px-6 pt-32 pb-16 lg:px-8 text-center flex-1 flex flex-col items-center justify-center">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white uppercase leading-tight">
-          <span className="block" style={{ fontFamily: 'var(--font-inter)' }}>Designed for Performance.</span>
-          <span className="block italic" style={{ fontFamily: 'var(--font-playfair)' }}>Built for the Sea.</span>
+        <h1
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white uppercase leading-tight"
+          style={{ fontFamily: 'var(--font-barlow-semi-condensed)' }}
+        >
+          Designed for Performance.
+          <br />
+          Built for the Sea.
         </h1>
 
         <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
@@ -105,7 +109,10 @@ export function FeaturesSection() {
           <p className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
             Built for the Water
           </p>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-6">
+          <h2
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight text-foreground mb-6"
+            style={{ fontFamily: 'var(--font-barlow-semi-condensed)' }}
+          >
             Inflate. Deploy.
             <br />
             <span className="text-accent">Own the Water.</span>
