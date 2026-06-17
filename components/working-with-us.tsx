@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { BeforeAfterSlider } from '@/components/before-after-slider'
 
 /* ─── Data ──────────────────────────────────────────────────────────── */
@@ -78,6 +78,7 @@ export function WorkingWithUsSection() {
   const next = () => setOffset((o) => Math.min(maxOffset, o + 1))
 
   return (
+    <>
     <section
       aria-labelledby="wwu-heading"
       className="py-20 md:py-28 bg-primary text-primary-foreground"
@@ -197,5 +198,51 @@ export function WorkingWithUsSection() {
 
       </div>
     </section>
+
+    {/* Build your Platform */}
+    <section className="bg-background py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+          {/* Left — text */}
+          <div>
+            <p className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
+              Bespoke Configuration
+            </p>
+            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground text-balance leading-tight mb-6">
+              Build your Platform
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              No two yachts are the same. Use our platform builder to configure
+              your ideal layout — size, material, accessories, and connection
+              points — tailored exactly to your vessel.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-8">
+              Our team will review your configuration and come back with a
+              detailed quote and 3D visualisation within 48 hours.
+            </p>
+            <Link
+              href="/build-your-platform"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors"
+            >
+              Start building <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          {/* Right — image */}
+          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+            <Image
+              src="/images/Platformdock.png"
+              alt="Custom inflatable platform configuration"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
+
+        </div>
+      </div>
+    </section>
+    </>
   )
 }
