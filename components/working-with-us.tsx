@@ -228,9 +228,10 @@ export function WorkingWithUsSection() {
             <div className="flex-shrink-0">
               <Link
                 href="/build-your-platform"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-background text-foreground font-semibold text-sm hover:bg-secondary transition-colors"
+                className="group inline-flex items-center gap-3 text-primary-foreground text-sm font-semibold uppercase tracking-widest border-b border-primary-foreground/40 pb-1 hover:border-primary-foreground transition-colors"
               >
-                Build your Platform <ArrowRight className="h-4 w-4" />
+                Build your Platform
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
           </div>
