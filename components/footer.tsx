@@ -25,29 +25,8 @@ const navigation = {
 export function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground">
-      {/* CTA Strip */}
-      <div className="border-b border-primary-foreground/10">
-        <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-primary-foreground/50 mb-1">
-              Ready to expand your deck?
-            </p>
-            <h2 className="text-xl font-bold tracking-tight text-balance">
-              Build your custom platform today.
-            </h2>
-          </div>
-          <Link
-            href="/build-your-platform"
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold bg-primary-foreground text-primary rounded-full hover:bg-primary-foreground/90 transition-colors shrink-0"
-          >
-            Get started
-            <ArrowUpRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </div>
-
       {/* Main Footer */}
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 border-t border-primary-foreground/20 py-16">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-2">

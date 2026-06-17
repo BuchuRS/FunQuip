@@ -138,6 +138,26 @@ export default function ProductsPage() {
                   title: 'Covered valves',
                   body: 'Discreet, flush-mounted valves come as standard on every model.',
                 },
+                {
+                  image: '/images/feature-inflation.png',
+                  title: 'Fast inflation',
+                  body: 'Dual-action valve system inflates any platform in under 5 minutes.',
+                },
+                {
+                  image: '/images/feature-anchor.png',
+                  title: 'Anchor points',
+                  body: 'Stainless steel D-rings welded flush into the surface at key positions.',
+                },
+                {
+                  image: '/images/feature-seams.png',
+                  title: 'Double-welded seams',
+                  body: 'Every seam is double-welded for exceptional strength and longevity.',
+                },
+                {
+                  image: '/images/feature-storage.png',
+                  title: 'Compact storage',
+                  body: 'Folds down into an included carry bag — easy to stow aboard any vessel.',
+                },
               ].map((feature) => (
                 <div key={feature.title} className="flex flex-col gap-4">
                   <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-secondary">
