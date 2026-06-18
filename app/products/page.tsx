@@ -126,7 +126,7 @@ export default function ProductsPage() {
                 },
                 {
                   image: '/images/feature-loops.png',
-                  title: 'Soft connection loops',
+                  title: 'Socket integration',
                   body: 'We only use soft loop ties on all our inflatables — no scratched hulls.',
                 },
                 {
