@@ -49,16 +49,20 @@ export function Header() {
                       <ChevronDown className="h-3.5 w-3.5" />
                     </Link>
                     {dropdownOpen && item.dropdownItems && (
-                      <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-neutral-100 py-2 z-50">
-                        {item.dropdownItems.map((dropItem) => (
-                          <Link
-                            key={dropItem.name}
-                            href={dropItem.href}
-                            className="block px-4 py-2 text-sm text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 transition-colors"
-                          >
-                            {dropItem.name}
-                          </Link>
-                        ))}
+                      <div className="absolute top-full left-0 w-48 z-50">
+                        {/* Invisible bridge to prevent gap-triggered close */}
+                        <div className="h-2" />
+                        <div className="bg-white rounded-xl shadow-xl border border-neutral-100 py-2">
+                          {item.dropdownItems.map((dropItem) => (
+                            <Link
+                              key={dropItem.name}
+                              href={dropItem.href}
+                              className="block px-4 py-2 text-sm text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50 transition-colors"
+                            >
+                              {dropItem.name}
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>
