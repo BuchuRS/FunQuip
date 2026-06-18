@@ -51,6 +51,9 @@ export function HeroSection() {
       <div className="relative z-10 pb-12 animate-bounce">
         <ArrowDown className="h-6 w-6 text-white/70" />
       </div>
+
+      {/* Bottom fade transition into next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-48 z-10 pointer-events-none bg-gradient-to-t from-background to-transparent" />
     </section>
   )
 }
