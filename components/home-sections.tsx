@@ -52,8 +52,8 @@ export function HeroSection() {
         <ArrowDown className="h-6 w-6 text-white/70" />
       </div>
 
-      {/* Bottom fade transition into next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-48 z-10 pointer-events-none bg-gradient-to-t from-background to-transparent" />
+      {/* Bottom fade — dark to dark, no jarring colour switch */}
+      <div className="absolute bottom-0 left-0 right-0 h-40 z-10 pointer-events-none bg-gradient-to-t from-neutral-950 to-transparent" />
     </section>
   )
 }
@@ -105,7 +105,7 @@ export function FeaturesSection() {
   ]
 
   return (
-    <section className="py-20 md:py-28 bg-background">
+    <section className="py-20 md:py-28 bg-neutral-950">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header section */}
         <div className="text-center mb-12 md:mb-16">
@@ -113,14 +113,14 @@ export function FeaturesSection() {
             Built for the Water
           </p>
           <h2
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight text-foreground mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight text-white mb-6"
             style={{ fontFamily: 'var(--font-barlow-semi-condensed)' }}
           >
             Inflate. Deploy.
             <br />
             <span className="text-accent">Own the Water.</span>
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
             From superyacht platforms to floating water parks — our inflatable systems set up in minutes and transform any anchorage into your private aquatic destination.
           </p>
         </div>
