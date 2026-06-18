@@ -121,7 +121,7 @@ export default function ProductsPage() {
               {[
                 {
                   image: '/images/feature-handles.png',
-                  title: 'Handles',
+                  title: 'Soft Handles',
                   body: 'Discreet, colour-coordinated carry handles on every platform.',
                 },
                 {
@@ -131,12 +131,12 @@ export default function ProductsPage() {
                 },
                 {
                   image: '/images/feature-covers.png',
-                  title: 'Removable covers',
+                  title: 'Premium teak surface',
                   body: 'Our printed, removable covers are non-slip and easy to clean.',
                 },
                 {
                   image: '/images/feature-valves.png',
-                  title: 'Covered valves',
+                  title: 'Reinforced corners',
                   body: 'Discreet, flush-mounted valves come as standard on every model.',
                 },
                 {
@@ -151,7 +151,7 @@ export default function ProductsPage() {
                 },
                 {
                   image: '/images/feature-seams.png',
-                  title: 'Double-welded seams',
+                  title: 'Ballast bags',
                   body: 'Every seam is double-welded for exceptional strength and longevity.',
                 },
                 {
