@@ -85,7 +85,7 @@ export function FeaturesSection() {
       name: 'POOLS',
       description: 'Private inflatable sea pools off your yacht.',
       image: '/images/product-seapool.png',
-      href: '/products?category=sea-pools',
+      href: '/seapool',
     },
     {
       name: 'FURNITURES',
