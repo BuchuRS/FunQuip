@@ -61,19 +61,19 @@ export function FeaturesSection() {
       name: 'PLATFORMS',
       description: 'Extend your yacht into a private floating beach.',
       image: '/images/Platformdock.png',
-      href: '/products?category=docking',
+      href: '/products/platforms',
     },
     {
       name: 'DOCKS',
       description: 'Modular docking systems for tenders and water toys.',
       image: '/images/category-docking.png',
-      href: '/products?category=docking',
+      href: '/products/platforms',
     },
     {
       name: 'HEX',
       description: 'Hexagonal modules that connect into your ideal layout.',
       image: '/images/hex-platforms-2.png',
-      href: '/products?category=platforms',
+      href: '/products?category=hexes',
     },
     {
       name: 'Water Parks',
@@ -85,7 +85,7 @@ export function FeaturesSection() {
       name: 'POOLS',
       description: 'Private inflatable sea pools off your yacht.',
       image: '/images/product-seapool.png',
-      href: '/seapool',
+      href: '/products/seapool',
     },
     {
       name: 'FURNITURES',
