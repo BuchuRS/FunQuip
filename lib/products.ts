@@ -197,6 +197,22 @@ export const products: Product[] = [
     features: ['Recessed central tub', 'Teak-print deck surround', 'Connectable to Hex arrays', 'Optional heating system'],
   },
   {
+    id: 'hex-platform-custom',
+    name: 'Hex Platform Custom',
+    category: 'Hexes',
+    tagline: 'Bespoke hexagonal geometry',
+    description: 'Custom hexagonal platforms designed to your exact specifications. Whether you need a unique size, specialized connection points, or integrated accessories, the Hex Platform Custom is engineered from brief to delivery. Perfect for one-off installations or flagship layouts.',
+    image: '/images/product-hex-platform.png',
+    price: 'Price on request',
+    specs: [
+      { label: 'Shape', value: 'Fully custom hexagonal' },
+      { label: 'Diameter', value: 'Bespoke' },
+      { label: 'Cover', value: 'Custom finish options' },
+      { label: 'Lead Time', value: 'On request' },
+    ],
+    features: ['Custom dimensions and geometry', 'Bespoke connection systems', 'Optional integrated accessories', 'Global delivery & service'],
+  },
+  {
     id: 'hex-array',
     name: 'Hex Array',
     category: 'Hexes',
